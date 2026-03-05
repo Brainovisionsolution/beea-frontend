@@ -11,6 +11,7 @@ import Dashboard from "./components/Dashboard";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import AdminDashboard from "./components/AdminDashboard";
+import Gallery from "./components/Gallery";
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -29,6 +30,7 @@ const App = () => (
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/reset-password" element={<ResetPassword/>}/>
           <Route path="/admin" element={<AdminDashboard/>}/>
+          <Route path="/gallery" element={<Gallery/>}/>
           </Routes>
       </BrowserRouter>
     </TooltipProvider>
