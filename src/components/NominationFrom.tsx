@@ -18,17 +18,11 @@ interface FormData {
     photo: File | null;
 }
 
+// UPDATED: SuccessResponse interface - now matches backend response
 interface SuccessResponse {
-    nominationId: string;
-    fullName: string;
     email: string;
-    mobile: string;
-    status: string;
-    loginCredentials: {
-        email: string;
-        password: string;
-        message: string;
-    };
+    fullName: string;
+    expiresIn: string;
 }
 
 interface ApiError {
@@ -105,6 +99,7 @@ const NominationForm: React.FC = () => {
                 }
             });
 
+            // API call remains the same
             const response = await axios.post<{ success: boolean; data: SuccessResponse }>(
                 'http://localhost:5000/api/nominations/submit',
                 formDataToSend,
@@ -126,6 +121,7 @@ const NominationForm: React.FC = () => {
         }
     };
 
+    // COMPLETELY UPDATED: Success UI for step 2
     if (step === 2 && success) {
         return (
             <motion.div 
@@ -137,43 +133,53 @@ const NominationForm: React.FC = () => {
                     <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
                         <CheckCircle className="w-10 h-10 text-green-500" />
                     </div>
-                    <h2 className="text-3xl font-bold text-[#0B1A2F] mb-2">Nomination Submitted Successfully!</h2>
-                    <p className="text-gray-600">Thank you for nominating for BEE Awards 2026</p>
+
+                    <h2 className="text-3xl font-bold text-[#0B1A2F] mb-2">
+                        Verification Email Sent!
+                    </h2>
+
+                    <p className="text-gray-600">
+                        Please check your email to complete your nomination.
+                    </p>
                 </div>
 
-                <div className="bg-gradient-to-r from-[#0B1A2F] to-[#132C42] text-[#F5E6C4] p-6 rounded-xl mb-6">
-                    <p className="text-sm mb-2">Your Nomination ID:</p>
-                    <p className="text-3xl font-bold text-[#D4AF37] mb-4">{success.nominationId}</p>
-                    <div className="border-t border-[#D4AF37] pt-4">
-                        <p className="text-sm mb-1">Login Credentials:</p>
-                        <p className="font-mono bg-black/20 p-2 rounded">Email: {success.email}</p>
-                        <p className="font-mono bg-black/20 p-2 rounded mt-2">Password: {success.loginCredentials.password}</p>
+                <div className="bg-gradient-to-r from-[#0B1A2F] to-[#132C42] text-[#F5E6C4] p-6 rounded-xl mb-6 text-center">
+                    <p className="text-lg">
+                        Verification email sent to
+                    </p>
+
+                    <p className="text-xl font-bold text-[#D4AF37] mt-2">
+                        {success.email}
+                    </p>
+
+                    <p className="text-sm mt-4">
+                        Click the verification link in your email to confirm your nomination.
+                    </p>
+                </div>
+
+                <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
+                    <AlertCircle className="w-5 h-5 text-blue-500 mt-0.5" />
+                    <div>
+                        <p className="font-semibold text-blue-800">
+                            Important
+                        </p>
+
+                        <p className="text-sm text-blue-600">
+                            Your nomination will only be completed after email verification.
+                        </p>
                     </div>
                 </div>
 
-                <div className="space-y-4">
-                    <div className="flex items-start gap-3 p-4 bg-blue-50 rounded-lg">
-                        <AlertCircle className="w-5 h-5 text-blue-500 mt-0.5" />
-                        <div>
-                            <p className="font-semibold text-blue-800">Important:</p>
-                            <p className="text-sm text-blue-600">Please save your Nomination ID and login credentials. You'll need them to track your nomination status.</p>
-                        </div>
-                    </div>
-
-                    <div className="flex gap-4">
-                        <button
-                            onClick={() => window.location.href = '/login'}
-                            className="flex-1 px-6 py-3 bg-[#D4AF37] text-[#0B1A2F] font-semibold rounded-lg hover:bg-[#F5E6C4] transition-colors"
+                <div className="mt-6 text-center">
+                    <p className="text-sm text-gray-500">
+                        Didn't receive the email? Check your spam folder or{' '}
+                        <button 
+                            onClick={() => window.location.reload()} 
+                            className="text-[#D4AF37] hover:underline font-semibold"
                         >
-                            Login to Dashboard
+                            try again
                         </button>
-                        <button
-                            onClick={() => window.print()}
-                            className="px-6 py-3 border-2 border-[#D4AF37] text-[#D4AF37] font-semibold rounded-lg hover:bg-[#D4AF37] hover:text-[#0B1A2F] transition-colors"
-                        >
-                            Save Details
-                        </button>
-                    </div>
+                    </p>
                 </div>
             </motion.div>
         );

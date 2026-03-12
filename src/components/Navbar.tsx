@@ -26,6 +26,7 @@ export default function Navbar() {
         { name: "History", href: "#history" },
       ]
     },
+    {name : "Gallery",href: "/gallery"},
     { name: "Categories", href: "#categories" },
     { name: "Jury", href: "#jury" },
     { name: "Sponsors", href: "#sponsors" },
@@ -161,7 +162,7 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden lg:block">
             <motion.a
-              href="#nominate"
+              href="/nominate"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="relative px-7 py-2.5 font-heading text-sm font-bold rounded-full overflow-hidden group"

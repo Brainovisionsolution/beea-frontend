@@ -1,677 +1,411 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { motion } from 'framer-motion';
-import {
-    Users,
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { motion } from "framer-motion";
+import { 
+    Download, 
+    Search, 
+    Filter, 
+    ChevronDown,
+    Eye,
     CheckCircle,
     XCircle,
     Clock,
-    Download,
-    Filter,
-    Search,
-    Eye,
-    ChevronLeft,
-    ChevronRight,
-    BarChart3,
-    PieChart,
-    TrendingUp,
     Award,
+    Users,
+    FileText,
+    TrendingUp,
+    RefreshCw,
+    AlertCircle,
     Mail,
     Phone,
-    MapPin,
     Calendar,
-    User,
-    BookOpen
-} from 'lucide-react';
+    MapPin
+} from "lucide-react";
 
 interface Nomination {
-    id: number;
     nomination_id: string;
     full_name: string;
     email: string;
     mobile: string;
-    gender: string;
-    college: string;
-    designation: string;
-    experience_years: number;
     category: string;
-    status: 'pending' | 'approved' | 'rejected' | 'withdrawn';
-    created_at: string;
-    updated_at: string;
-    last_login: string | null;
+    status: 'pending' | 'approved' | 'rejected' | 'under_review';
+    college?: string;
+    designation?: string;
+    created_at?: string;
 }
 
-interface Stats {
-    overview: {
-        total_nominations: number;
-        pending_count: number;
-        approved_count: number;
-        rejected_count: number;
-        withdrawn_count: number;
-        total_categories: number;
-        first_nomination: string;
-        latest_nomination: string;
-    };
-    categoryWise: Array<{
-        category: string;
-        count: number;
-        pending: number;
-        approved: number;
-    }>;
-    recentActivity: Array<{
-        date: string;
-        nominations: number;
-    }>;
-    genderDistribution: Array<{
-        gender: string;
-        count: number;
-    }>;
-}
-
-const AdminDashboard: React.FC = () => {
+const AdminDashboard = () => {
     const [nominations, setNominations] = useState<Nomination[]>([]);
-    const [stats, setStats] = useState<Stats | null>(null);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [statusFilter, setStatusFilter] = useState<string>("all");
+    const [categoryFilter, setCategoryFilter] = useState<string>("all");
     const [selectedNomination, setSelectedNomination] = useState<Nomination | null>(null);
-    const [viewMode, setViewMode] = useState<'dashboard' | 'list' | 'details'>('dashboard');
-    
-    // Pagination
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1);
-    const [totalItems, setTotalItems] = useState(0);
-    
-    // Filters
-    const [statusFilter, setStatusFilter] = useState('all');
-    const [categoryFilter, setCategoryFilter] = useState('all');
-    const [searchQuery, setSearchQuery] = useState('');
-    const [categories, setCategories] = useState<string[]>([]);
+    const [showDetailsModal, setShowDetailsModal] = useState(false);
+    const [refreshing, setRefreshing] = useState(false);
+
+    const fetchNominations = async () => {
+        try {
+            setRefreshing(true);
+            const res = await axios.get(
+                "http://localhost:5000/api/admin/nominations"
+            );
+            setNominations(res.data.data);
+        } catch (error) {
+            console.error("Error fetching nominations:", error);
+        } finally {
+            setLoading(false);
+            setRefreshing(false);
+        }
+    };
 
     useEffect(() => {
-        fetchDashboardStats();
         fetchNominations();
-    }, [currentPage, statusFilter, categoryFilter, searchQuery]);
+    }, []);
 
-    const fetchDashboardStats = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await axios.get(
-                'http://localhost:5000/api/admin/dashboard/stats',
-                {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-            );
-            setStats(response.data.data);
-        } catch (error) {
-            console.error('Failed to fetch stats:', error);
-        }
-    };
-
-  
-
-    const fetchNominationDetails = async (id: number | string) => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await axios.get(
-                `http://localhost:5000/api/admin/nominations/${id}`,
-                {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-            );
-            setSelectedNomination(response.data.data.nomination);
-            setViewMode('details');
-        } catch (error) {
-            console.error('Failed to fetch nomination details:', error);
-        }
-    };const fetchNominations = async () => {
-    setLoading(true);
-    try {
-        const token = localStorage.getItem('token');
-        console.log('Fetching with token:', token);
-        
-        const response = await axios.get(
-            `http://localhost:5000/api/admin/nominations?page=${currentPage}&status=${statusFilter}&category=${categoryFilter}&search=${searchQuery}`,
-            {
-                headers: { Authorization: `Bearer ${token}` }
-            }
+    const downloadExcel = () => {
+        window.open(
+            "http://localhost:5000/api/admin/nominations-excel"
         );
-        
-        console.log('API Response:', response.data);
-        
-        if (response.data.success) {
-            setNominations(response.data.data.nominations);
-            setTotalPages(response.data.data.pagination.pages);
-            setTotalItems(response.data.data.pagination.total);
-            setCategories(response.data.data.filters.categories);
-        }
-    } catch (error) {
-        console.error('Failed to fetch nominations:', error);
-        if (error.response) {
-            console.error('Error response:', error.response.data);
-        }
-    } finally {
-        setLoading(false);
-    }
-};
-
-    const updateNominationStatus = async (id: number, status: string) => {
-        try {
-            const token = localStorage.getItem('token');
-            await axios.put(
-                `http://localhost:5000/api/admin/nominations/${id}/status`,
-                { status },
-                {
-                    headers: { Authorization: `Bearer ${token}` }
-                }
-            );
-            fetchNominations();
-            fetchDashboardStats();
-            if (selectedNomination) {
-                setSelectedNomination(null);
-                setViewMode('list');
-            }
-        } catch (error) {
-            console.error('Failed to update status:', error);
-        }
     };
 
-    const exportCSV = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await axios.get(
-                'http://localhost:5000/api/admin/export/csv',
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                    responseType: 'blob'
-                }
-            );
-            
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'nominations.csv');
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-        } catch (error) {
-            console.error('Failed to export CSV:', error);
-        }
+    // Get unique categories for filter
+    const categories = [...new Set(nominations.map(n => n.category))];
+
+    // Filter nominations
+    const filteredNominations = nominations.filter(n => {
+        const matchesSearch = 
+            n.full_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            n.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            n.nomination_id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            n.mobile.includes(searchTerm);
+        
+        const matchesStatus = statusFilter === "all" || n.status === statusFilter;
+        const matchesCategory = categoryFilter === "all" || n.category === categoryFilter;
+        
+        return matchesSearch && matchesStatus && matchesCategory;
+    });
+
+    // Statistics
+    const stats = {
+        total: nominations.length,
+        pending: nominations.filter(n => n.status === 'pending').length,
+        approved: nominations.filter(n => n.status === 'approved').length,
+        underReview: nominations.filter(n => n.status === 'under_review').length,
+        rejected: nominations.filter(n => n.status === 'rejected').length
     };
 
     const getStatusBadge = (status: string) => {
-        const styles = {
-            pending: 'bg-yellow-100 text-yellow-800 border-yellow-200',
-            approved: 'bg-green-100 text-green-800 border-green-200',
-            rejected: 'bg-red-100 text-red-800 border-red-200',
-            withdrawn: 'bg-gray-100 text-gray-800 border-gray-200'
+        const statusConfig = {
+            pending: { color: "bg-yellow-100 text-yellow-800 border-yellow-200", icon: Clock },
+            approved: { color: "bg-green-100 text-green-800 border-green-200", icon: CheckCircle },
+            rejected: { color: "bg-red-100 text-red-800 border-red-200", icon: XCircle },
+            under_review: { color: "bg-blue-100 text-blue-800 border-blue-200", icon: Eye }
         };
         
-        const icons = {
-            pending: <Clock className="w-4 h-4" />,
-            approved: <CheckCircle className="w-4 h-4" />,
-            rejected: <XCircle className="w-4 h-4" />,
-            withdrawn: <XCircle className="w-4 h-4" />
-        };
-
+        const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending;
+        const Icon = config.icon;
+        
         return (
-            <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${styles[status as keyof typeof styles]}`}>
-                {icons[status as keyof typeof icons]}
-                {status.charAt(0).toUpperCase() + status.slice(1)}
+            <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border ${config.color}`}>
+                <Icon className="w-3 h-3" />
+                {status.replace('_', ' ').toUpperCase()}
             </span>
         );
     };
 
-    if (viewMode === 'details' && selectedNomination) {
-        return (
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="min-h-screen bg-gray-50 p-8"
-            >
-                <div className="max-w-4xl mx-auto">
-                    <button
-                        onClick={() => setViewMode('list')}
-                        className="mb-6 flex items-center gap-2 text-[#0B1A2F] hover:text-[#D4AF37] transition-colors"
-                    >
-                        <ChevronLeft className="w-5 h-5" />
-                        Back to Nominations
-                    </button>
-
-                    <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
-                        <div className="bg-gradient-to-r from-[#0B1A2F] to-[#132C42] p-8 text-white">
-                            <div className="flex justify-between items-start">
-                                <div>
-                                    <h1 className="text-3xl font-bold text-[#D4AF37] mb-2">
-                                        {selectedNomination.full_name}
-                                    </h1>
-                                    <p className="text-[#F5E6C4]">{selectedNomination.designation}</p>
-                                </div>
-                                {getStatusBadge(selectedNomination.status)}
-                            </div>
-                        </div>
-
-                        <div className="p-8">
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <div className="space-y-4">
-                                    <h3 className="text-lg font-semibold text-[#0B1A2F] border-b-2 border-[#D4AF37] pb-2">
-                                        Personal Information
-                                    </h3>
-                                    
-                                    <div className="flex items-center gap-3">
-                                        <Mail className="w-5 h-5 text-[#D4AF37]" />
-                                        <span>{selectedNomination.email}</span>
-                                    </div>
-                                    
-                                    <div className="flex items-center gap-3">
-                                        <Phone className="w-5 h-5 text-[#D4AF37]" />
-                                        <span>{selectedNomination.mobile}</span>
-                                    </div>
-                                    
-                                    <div className="flex items-center gap-3">
-                                        <User className="w-5 h-5 text-[#D4AF37]" />
-                                        <span className="capitalize">{selectedNomination.gender}</span>
-                                    </div>
-                                </div>
-
-                                <div className="space-y-4">
-                                    <h3 className="text-lg font-semibold text-[#0B1A2F] border-b-2 border-[#D4AF37] pb-2">
-                                        Professional Information
-                                    </h3>
-                                    
-                                    <div className="flex items-center gap-3">
-                                        <BookOpen className="w-5 h-5 text-[#D4AF37]" />
-                                        <span>{selectedNomination.college}</span>
-                                    </div>
-                                    
-                                    <div className="flex items-center gap-3">
-                                        <Award className="w-5 h-5 text-[#D4AF37]" />
-                                        <span>{selectedNomination.category}</span>
-                                    </div>
-                                    
-                                    <div className="flex items-center gap-3">
-                                        <Calendar className="w-5 h-5 text-[#D4AF37]" />
-                                        <span>{selectedNomination.experience_years} years experience</span>
-                                    </div>
-                                </div>
-
-                                <div className="col-span-2">
-                                    <h3 className="text-lg font-semibold text-[#0B1A2F] border-b-2 border-[#D4AF37] pb-2 mb-4">
-                                        Nomination Details
-                                    </h3>
-                                    
-                                    <div className="grid md:grid-cols-3 gap-4">
-                                        <div className="p-4 bg-gray-50 rounded-lg">
-                                            <p className="text-sm text-gray-500">Nomination ID</p>
-                                            <p className="font-mono font-bold text-[#D4AF37]">
-                                                {selectedNomination.nomination_id}
-                                            </p>
-                                        </div>
-                                        
-                                        <div className="p-4 bg-gray-50 rounded-lg">
-                                            <p className="text-sm text-gray-500">Submitted On</p>
-                                            <p>{new Date(selectedNomination.created_at).toLocaleDateString()}</p>
-                                        </div>
-                                        
-                                        <div className="p-4 bg-gray-50 rounded-lg">
-                                            <p className="text-sm text-gray-500">Last Updated</p>
-                                            <p>{new Date(selectedNomination.updated_at).toLocaleDateString()}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="mt-8 flex gap-4">
-                                <button
-                                    onClick={() => updateNominationStatus(selectedNomination.id, 'approved')}
-                                    className="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors"
-                                >
-                                    Approve
-                                </button>
-                                <button
-                                    onClick={() => updateNominationStatus(selectedNomination.id, 'rejected')}
-                                    className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                                >
-                                    Reject
-                                </button>
-                                <button
-                                    onClick={() => updateNominationStatus(selectedNomination.id, 'pending')}
-                                    className="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors"
-                                >
-                                    Mark Pending
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+    const StatCard = ({ title, value, icon: Icon, color }: any) => (
+        <motion.div 
+            whileHover={{ scale: 1.02 }}
+            className="bg-white rounded-xl shadow-lg p-6 border-l-4"
+            style={{ borderColor: color }}
+        >
+            <div className="flex items-center justify-between">
+                <div>
+                    <p className="text-sm text-gray-600 mb-1">{title}</p>
+                    <p className="text-3xl font-bold text-gray-800">{value}</p>
                 </div>
-            </motion.div>
-        );
-    }
-
-    if (viewMode === 'list') {
-        return (
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="min-h-screen bg-gray-50 p-8"
-            >
-                <div className="max-w-7xl mx-auto">
-                    <div className="flex justify-between items-center mb-8">
-                        <div>
-                            <h1 className="text-3xl font-bold text-[#0B1A2F]">Nominations</h1>
-                            <p className="text-gray-600 mt-1">Total: {totalItems} nominations</p>
-                        </div>
-                        <div className="flex gap-4">
-                            <button
-                                onClick={() => setViewMode('dashboard')}
-                                className="px-4 py-2 bg-[#0B1A2F] text-white rounded-lg hover:bg-[#132C42] transition-colors"
-                            >
-                                Back to Dashboard
-                            </button>
-                            <button
-                                onClick={exportCSV}
-                                className="flex items-center gap-2 px-4 py-2 bg-[#D4AF37] text-[#0B1A2F] rounded-lg hover:bg-[#F5E6C4] transition-colors"
-                            >
-                                <Download className="w-4 h-4" />
-                                Export CSV
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Filters */}
-                    <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-                        <div className="grid md:grid-cols-4 gap-4">
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Search
-                                </label>
-                                <div className="relative">
-                                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                                    <input
-                                        type="text"
-                                        placeholder="Search by name, email, ID..."
-                                        value={searchQuery}
-                                        onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
-                                    />
-                                </div>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Status
-                                </label>
-                                <select
-                                    value={statusFilter}
-                                    onChange={(e) => setStatusFilter(e.target.value)}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
-                                >
-                                    <option value="all">All Status</option>
-                                    <option value="pending">Pending</option>
-                                    <option value="approved">Approved</option>
-                                    <option value="rejected">Rejected</option>
-                                    <option value="withdrawn">Withdrawn</option>
-                                </select>
-                            </div>
-
-                            <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">
-                                    Category
-                                </label>
-                                <select
-                                    value={categoryFilter}
-                                    onChange={(e) => setCategoryFilter(e.target.value)}
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
-                                >
-                                    <option value="all">All Categories</option>
-                                    {categories.map(cat => (
-                                        <option key={cat} value={cat}>{cat}</option>
-                                    ))}
-                                </select>
-                            </div>
-
-                            <div className="flex items-end">
-                                <button
-                                    onClick={() => {
-                                        setStatusFilter('all');
-                                        setCategoryFilter('all');
-                                        setSearchQuery('');
-                                    }}
-                                    className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-                                >
-                                    Clear Filters
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Nominations Table */}
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-                        <div className="overflow-x-auto">
-                            <table className="w-full">
-                                <thead className="bg-gray-50">
-                                    <tr>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Nomination ID
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Name
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Category
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            College
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Status
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Submitted
-                                        </th>
-                                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Actions
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-gray-200">
-                                    {loading ? (
-                                        <tr>
-                                            <td colSpan={7} className="px-6 py-12 text-center">
-                                                <div className="flex justify-center">
-                                                    <div className="w-8 h-8 border-4 border-[#D4AF37] border-t-transparent rounded-full animate-spin"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ) : nominations.length === 0 ? (
-                                        <tr>
-                                            <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
-                                                No nominations found
-                                            </td>
-                                        </tr>
-                                    ) : (
-                                        nominations.map((nomination) => (
-                                            <tr key={nomination.id} className="hover:bg-gray-50">
-                                                <td className="px-6 py-4 font-mono text-sm">
-                                                    {nomination.nomination_id}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <div className="font-medium">{nomination.full_name}</div>
-                                                    <div className="text-sm text-gray-500">{nomination.email}</div>
-                                                </td>
-                                                <td className="px-6 py-4 text-sm">
-                                                    {nomination.category}
-                                                </td>
-                                                <td className="px-6 py-4 text-sm">
-                                                    {nomination.college}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    {getStatusBadge(nomination.status)}
-                                                </td>
-                                                <td className="px-6 py-4 text-sm text-gray-500">
-                                                    {new Date(nomination.created_at).toLocaleDateString()}
-                                                </td>
-                                                <td className="px-6 py-4">
-                                                    <button
-                                                        onClick={() => fetchNominationDetails(nomination.id)}
-                                                        className="p-2 text-[#D4AF37] hover:bg-[#D4AF37] hover:text-white rounded-lg transition-colors"
-                                                    >
-                                                        <Eye className="w-4 h-4" />
-                                                    </button>
-                                                </td>
-                                            </tr>
-                                        ))
-                                    )}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        {/* Pagination */}
-                        {totalPages > 1 && (
-                            <div className="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
-                                <button
-                                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                                    disabled={currentPage === 1}
-                                    className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
-                                >
-                                    Previous
-                                </button>
-                                <span className="text-sm text-gray-700">
-                                    Page {currentPage} of {totalPages}
-                                </span>
-                                <button
-                                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                                    disabled={currentPage === totalPages}
-                                    className="px-4 py-2 border border-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50"
-                                >
-                                    Next
-                                </button>
-                            </div>
-                        )}
-                    </div>
+                <div className="p-3 rounded-lg" style={{ backgroundColor: color + '20' }}>
+                    <Icon className="w-6 h-6" style={{ color }} />
                 </div>
-            </motion.div>
+            </div>
+        </motion.div>
+    );
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-gradient-to-br from-[#0B1A2F] to-[#132C42] flex items-center justify-center">
+                <div className="text-center">
+                    <div className="animate-spin rounded-full h-16 w-16 border-4 border-[#D4AF37] border-t-transparent mx-auto mb-4"></div>
+                    <p className="text-[#F5E6C4] text-lg">Loading dashboard...</p>
+                </div>
+            </div>
         );
     }
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="min-h-screen bg-gray-50 p-8"
-        >
-            <div className="max-w-7xl mx-auto">
-                <div className="flex justify-between items-center mb-8">
-                    <div>
-                        <h1 className="text-3xl font-bold text-[#0B1A2F]">Admin Dashboard</h1>
-                        <p className="text-gray-600 mt-1">Welcome back, Admin</p>
-                    </div>
-                    <button
-                        onClick={() => setViewMode('list')}
-                        className="px-6 py-3 bg-[#D4AF37] text-[#0B1A2F] font-semibold rounded-lg hover:bg-[#F5E6C4] transition-colors"
-                    >
-                        View All Nominations
-                    </button>
-                </div>
-
-                {/* Stats Cards */}
-                {stats && (
-                    <div className="grid md:grid-cols-4 gap-6 mb-8">
-                        <div className="bg-white rounded-xl shadow-lg p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="p-3 bg-blue-100 rounded-lg">
-                                    <Users className="w-6 h-6 text-blue-600" />
-                                </div>
-                                <span className="text-2xl font-bold">{stats.overview.total_nominations}</span>
-                            </div>
-                            <h3 className="text-gray-600">Total Nominations</h3>
+        <div className="min-h-screen bg-gray-50">
+            {/* Header */}
+            <div className="bg-gradient-to-r from-[#0B1A2F] to-[#132C42] sticky top-0 z-10 shadow-lg">
+                <div className="max-w-7xl mx-auto px-6 py-4">
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <Award className="w-8 h-8 text-[#D4AF37]" />
+                            <h1 className="text-2xl font-bold text-[#F5E6C4]">Admin Dashboard</h1>
                         </div>
-
-                        <div className="bg-white rounded-xl shadow-lg p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="p-3 bg-yellow-100 rounded-lg">
-                                    <Clock className="w-6 h-6 text-yellow-600" />
-                                </div>
-                                <span className="text-2xl font-bold">{stats.overview.pending_count}</span>
-                            </div>
-                            <h3 className="text-gray-600">Pending Review</h3>
-                        </div>
-
-                        <div className="bg-white rounded-xl shadow-lg p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="p-3 bg-green-100 rounded-lg">
-                                    <CheckCircle className="w-6 h-6 text-green-600" />
-                                </div>
-                                <span className="text-2xl font-bold">{stats.overview.approved_count}</span>
-                            </div>
-                            <h3 className="text-gray-600">Approved</h3>
-                        </div>
-
-                        <div className="bg-white rounded-xl shadow-lg p-6">
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="p-3 bg-purple-100 rounded-lg">
-                                    <BarChart3 className="w-6 h-6 text-purple-600" />
-                                </div>
-                                <span className="text-2xl font-bold">{stats.overview.total_categories}</span>
-                            </div>
-                            <h3 className="text-gray-600">Categories</h3>
+                        <div className="flex items-center gap-4">
+                            <button
+                                onClick={fetchNominations}
+                                disabled={refreshing}
+                                className="flex items-center gap-2 px-4 py-2 bg-[#D4AF37]/20 text-[#F5E6C4] rounded-lg hover:bg-[#D4AF37]/30 transition-all"
+                            >
+                                <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
+                                Refresh
+                            </button>
+                            <button
+                                onClick={downloadExcel}
+                                className="flex items-center gap-2 px-4 py-2 bg-[#D4AF37] text-[#0B1A2F] rounded-lg hover:bg-[#F5E6C4] transition-all font-semibold"
+                            >
+                                <Download className="w-4 h-4" />
+                                Export Excel
+                            </button>
                         </div>
                     </div>
-                )}
-
-                <div className="grid md:grid-cols-2 gap-8">
-                    {/* Category Distribution */}
-                    {stats && (
-                        <div className="bg-white rounded-xl shadow-lg p-6">
-                            <h3 className="text-lg font-semibold text-[#0B1A2F] mb-4 flex items-center gap-2">
-                                <PieChart className="w-5 h-5 text-[#D4AF37]" />
-                                Nominations by Category
-                            </h3>
-                            <div className="space-y-4">
-                                {stats.categoryWise.map((cat) => (
-                                    <div key={cat.category}>
-                                        <div className="flex justify-between text-sm mb-1">
-                                            <span className="text-gray-600">{cat.category}</span>
-                                            <span className="font-semibold">{cat.count}</span>
-                                        </div>
-                                        <div className="w-full bg-gray-200 rounded-full h-2">
-                                            <div
-                                                className="bg-[#D4AF37] h-2 rounded-full"
-                                                style={{
-                                                    width: `${(cat.count / stats.overview.total_nominations) * 100}%`
-                                                }}
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Recent Activity */}
-                    {stats && (
-                        <div className="bg-white rounded-xl shadow-lg p-6">
-                            <h3 className="text-lg font-semibold text-[#0B1A2F] mb-4 flex items-center gap-2">
-                                <TrendingUp className="w-5 h-5 text-[#D4AF37]" />
-                                Recent Activity (Last 7 Days)
-                            </h3>
-                            <div className="space-y-4">
-                                {stats.recentActivity.map((activity) => (
-                                    <div key={activity.date} className="flex items-center justify-between">
-                                        <span className="text-gray-600">
-                                            {new Date(activity.date).toLocaleDateString('en-US', {
-                                                weekday: 'short',
-                                                month: 'short',
-                                                day: 'numeric'
-                                            })}
-                                        </span>
-                                        <span className="font-semibold">{activity.nominations} nominations</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
                 </div>
             </div>
-        </motion.div>
+
+            <div className="max-w-7xl mx-auto px-6 py-8">
+                {/* Stats Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+                    <StatCard title="Total Nominations" value={stats.total} icon={Users} color="#0B1A2F" />
+                    <StatCard title="Pending" value={stats.pending} icon={Clock} color="#F59E0B" />
+                    <StatCard title="Under Review" value={stats.underReview} icon={Eye} color="#3B82F6" />
+                    <StatCard title="Approved" value={stats.approved} icon={CheckCircle} color="#10B981" />
+                    <StatCard title="Rejected" value={stats.rejected} icon={XCircle} color="#EF4444" />
+                </div>
+
+                {/* Filters */}
+                <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                            <input
+                                type="text"
+                                placeholder="Search by name, email, ID..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
+                            />
+                        </div>
+
+                        <div className="relative">
+                            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                            <select
+                                value={statusFilter}
+                                onChange={(e) => setStatusFilter(e.target.value)}
+                                className="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent appearance-none"
+                            >
+                                <option value="all">All Status</option>
+                                <option value="pending">Pending</option>
+                                <option value="under_review">Under Review</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                        </div>
+
+                        <div className="relative">
+                            <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                            <select
+                                value={categoryFilter}
+                                onChange={(e) => setCategoryFilter(e.target.value)}
+                                className="w-full pl-10 pr-8 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent appearance-none"
+                            >
+                                <option value="all">All Categories</option>
+                                {categories.map(cat => (
+                                    <option key={cat} value={cat}>{cat}</option>
+                                ))}
+                            </select>
+                            <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                        </div>
+
+                        <div className="text-right text-sm text-gray-500">
+                            Showing {filteredNominations.length} of {nominations.length} nominations
+                        </div>
+                    </div>
+                </div>
+
+                {/* Table */}
+                <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                    <div className="overflow-x-auto">
+                        <table className="w-full">
+                            <thead className="bg-gradient-to-r from-[#0B1A2F] to-[#132C42] text-[#F5E6C4]">
+                                <tr>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold">Nomination ID</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold">Full Name</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold">Contact</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold">Category</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold">Status</th>
+                                    <th className="px-6 py-4 text-left text-sm font-semibold">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-200">
+                                {filteredNominations.length === 0 ? (
+                                    <tr>
+                                        <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
+                                            <AlertCircle className="w-12 h-12 mx-auto mb-3 text-gray-400" />
+                                            <p className="text-lg font-medium">No nominations found</p>
+                                            <p className="text-sm">Try adjusting your filters</p>
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    filteredNominations.map((nomination, index) => (
+                                        <motion.tr 
+                                            key={nomination.nomination_id}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                            transition={{ delay: index * 0.05 }}
+                                            className="hover:bg-gray-50 transition-colors"
+                                        >
+                                            <td className="px-6 py-4">
+                                                <span className="font-mono text-sm font-medium text-[#0B1A2F]">
+                                                    {nomination.nomination_id}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="font-medium text-gray-900">{nomination.full_name}</div>
+                                                {nomination.designation && (
+                                                    <div className="text-sm text-gray-500">{nomination.designation}</div>
+                                                )}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <div className="flex flex-col gap-1">
+                                                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                                                        <Mail className="w-3 h-3" />
+                                                        {nomination.email}
+                                                    </div>
+                                                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                                                        <Phone className="w-3 h-3" />
+                                                        {nomination.mobile}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <span className="inline-flex px-3 py-1 bg-[#D4AF37]/10 text-[#0B1A2F] rounded-full text-xs font-medium">
+                                                    {nomination.category}
+                                                </span>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                {getStatusBadge(nomination.status)}
+                                            </td>
+                                            <td className="px-6 py-4">
+                                                <button
+                                                    onClick={() => {
+                                                        setSelectedNomination(nomination);
+                                                        setShowDetailsModal(true);
+                                                    }}
+                                                    className="flex items-center gap-2 px-3 py-1 text-[#0B1A2F] hover:bg-[#D4AF37] rounded-lg transition-colors"
+                                                >
+                                                    <Eye className="w-4 h-4" />
+                                                    View
+                                                </button>
+                                            </td>
+                                        </motion.tr>
+                                    ))
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            {/* Details Modal */}
+            {showDetailsModal && selectedNomination && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
+                    <motion.div 
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                    >
+                        <div className="sticky top-0 bg-gradient-to-r from-[#0B1A2F] to-[#132C42] p-6 text-white">
+                            <div className="flex items-center justify-between">
+                                <h2 className="text-2xl font-bold">Nomination Details</h2>
+                                <button 
+                                    onClick={() => setShowDetailsModal(false)}
+                                    className="p-2 hover:bg-white/20 rounded-lg transition-colors"
+                                >
+                                    <XCircle className="w-6 h-6" />
+                                </button>
+                            </div>
+                        </div>
+
+                        <div className="p-6 space-y-6">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div>
+                                    <p className="text-sm text-gray-500">Nomination ID</p>
+                                    <p className="font-mono font-semibold">{selectedNomination.nomination_id}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-gray-500">Status</p>
+                                    <div>{getStatusBadge(selectedNomination.status)}</div>
+                                </div>
+                            </div>
+
+                            <div className="border-t pt-4">
+                                <h3 className="font-semibold mb-3">Personal Information</h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p className="text-sm text-gray-500">Full Name</p>
+                                        <p className="font-medium">{selectedNomination.full_name}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-gray-500">Email</p>
+                                        <p className="font-medium">{selectedNomination.email}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-gray-500">Mobile</p>
+                                        <p className="font-medium">{selectedNomination.mobile}</p>
+                                    </div>
+                                    {selectedNomination.college && (
+                                        <div>
+                                            <p className="text-sm text-gray-500">College</p>
+                                            <p className="font-medium">{selectedNomination.college}</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="border-t pt-4">
+                                <h3 className="font-semibold mb-3">Nomination Details</h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <p className="text-sm text-gray-500">Category</p>
+                                        <p className="font-medium">{selectedNomination.category}</p>
+                                    </div>
+                                    {selectedNomination.created_at && (
+                                        <div>
+                                            <p className="text-sm text-gray-500">Submitted On</p>
+                                            <p className="font-medium">
+                                                {new Date(selectedNomination.created_at).toLocaleDateString()}
+                                            </p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className="flex gap-3 pt-4">
+                                <button className="flex-1 px-4 py-2 bg-[#D4AF37] text-[#0B1A2F] rounded-lg hover:bg-[#F5E6C4] transition-colors font-semibold">
+                                    Update Status
+                                </button>
+                                <button className="px-4 py-2 border-2 border-[#D4AF37] text-[#D4AF37] rounded-lg hover:bg-[#D4AF37] hover:text-[#0B1A2F] transition-colors">
+                                    Contact Nominee
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                </div>
+            )}
+        </div>
     );
 };
 
