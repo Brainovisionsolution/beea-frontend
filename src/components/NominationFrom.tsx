@@ -55,16 +55,47 @@ const NominationForm: React.FC = () => {
     const [step, setStep] = useState<number>(1);
 
     const categories: string[] = [
-        'Best Educational Institution',
-        'Outstanding Teacher Award',
-        'Innovative Teaching Methodology',
-        'Research Excellence Award',
-        'Young Achiever Award',
-        'Lifetime Achievement Award',
-        'Best Engineering College',
-        'Best Management Institute'
-    ];
+  // 🔷 General / Existing
+  'Best Educational Institution',
+  'Outstanding Teacher Award',
+  'Innovative Teaching Methodology',
+  'Research Excellence Award',
+  'Young Achiever Award',
+  'Lifetime Achievement Award',
+  'Best Engineering College',
+  'Best Management Institute',
 
+  // 🏫 College Awards
+  'Overall Excellence in Education',
+  'Academic Excellence',
+  'Innovation in Teaching & Learning',
+  'Best in Research & Development',
+  'Student Support & Welfare Excellence',
+  'Outstanding Infrastructure & Facilities',
+  'Industry Collaboration & Placements',
+  'Social Impact & Community Engagement',
+  'Sustainable Green Campus Initiative',
+
+  // 👤 Individual Awards
+  'Samarpana Acharya Lifetime Achievement Award',
+  'Bhisma Acharya Individual Award',
+  'Sadhya Acharya Industry Collaboration Award',
+  'Jyestha Acharya Individual Award',
+  'Uttama Adhyapika Individual Award',
+  'Kalpa Acharya Individual Award',
+  'Yuva Acharya Individual Award',
+  'Niyukti Acharya Individual Award',
+  'Ananta Acharya Leadership Award',
+  'Shakti Acharya Empowerment Award',
+  'Shraddha Acharya Student Success Award',
+  'Udyam Acharya Entrepreneurship Award',
+  'Anveshana Acharya Research Mentorship Award',
+  'Vidya Ratna – Jewel of Education Award',
+  'Buddhiman Guru – Wise Teacher Award',
+  'Guru Shreshta – Greatest Teacher Award',
+  'Vidya Vibhushan – Ornament of Learning Award',
+  'Shiksha Samrat – Emperor of Education Award'
+];
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
