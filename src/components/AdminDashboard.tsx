@@ -45,19 +45,19 @@ const AdminDashboard = () => {
     const [refreshing, setRefreshing] = useState(false);
 
     const fetchNominations = async () => {
-        try {
-            setRefreshing(true);
-            const res = await axios.get(
-                "http://localhost:5000/api/admin/nominations"
-            );
-            setNominations(res.data.data);
-        } catch (error) {
-            console.error("Error fetching nominations:", error);
-        } finally {
-            setLoading(false);
-            setRefreshing(false);
-        }
-    };
+    try {
+        setRefreshing(true);
+        const res = await axios.get(
+            "/api/admin/nominations"
+        );
+        setNominations(res.data.data);
+    } catch (error) {
+        console.error("Error fetching nominations:", error);
+    } finally {
+        setLoading(false);
+        setRefreshing(false);
+    }
+};
 
     useEffect(() => {
         fetchNominations();

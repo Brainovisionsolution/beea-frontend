@@ -33,30 +33,30 @@ const Dashboard = () => {
     }, []);
 
     const fetchDashboardData = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            const response = await axios.get(
-                'http://localhost:5000/api/user/dashboard',
-                {
-                    headers: { Authorization: `Bearer ${token}` },
-                    withCredentials: true
-                }
-            );
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(
+            '/api/user/dashboard',
+            {
+                headers: { Authorization: `Bearer ${token}` },
+                withCredentials: true
+            }
+        );
 
-            if (response.data.success) {
-                setUserData(response.data.data.user);
-                setNomination(response.data.data.nomination);
-                setActivities(response.data.data.activities);
-            }
-        } catch (err) {
-            setError('Failed to load dashboard data');
-            if (err.response?.status === 401) {
-                navigate('/login');
-            }
-        } finally {
-            setLoading(false);
+        if (response.data.success) {
+            setUserData(response.data.data.user);
+            setNomination(response.data.data.nomination);
+            setActivities(response.data.data.activities);
         }
-    };
+    } catch (err) {
+        setError('Failed to load dashboard data');
+        if (err.response?.status === 401) {
+            navigate('/login');
+        }
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleLogout = async () => {
         try {

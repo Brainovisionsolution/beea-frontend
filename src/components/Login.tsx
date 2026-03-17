@@ -31,42 +31,39 @@ const Login = () => {
         setError('');
 
         try {
-            if (!otpSent) {
-                // STEP 1: Send OTP
-                await axios.post(
-                    "http://localhost:5000/api/auth/send-login-otp",
-                    { email: formData.email }
-                );
+    if (!otpSent) {
+        // STEP 1: Send OTP
+        await axios.post(
+            "/api/auth/send-login-otp",
+            { email: formData.email }
+        );
 
-                setOtpSent(true);
-                setError(''); // Clear any previous errors
-            } else {
-                // STEP 2: Verify OTP and Login
-                const response = await axios.post(
-                    "http://localhost:5000/api/auth/verify-login-otp",
-                    {
-                        email: formData.email,
-                        otp: formData.otp
-                    },
-                    { withCredentials: true }
-                );
+        setOtpSent(true);
+        setError('');
+    } else {
+        // STEP 2: Verify OTP and Login
+        const response = await axios.post(
+            "/api/auth/verify-login-otp",
+            {
+                email: formData.email,
+                otp: formData.otp
+            },
+            { withCredentials: true }
+        );
 
-                if (response.data.success) {
-                    // Store user data
-                    localStorage.setItem("token", response.data.token);
-                    localStorage.setItem("user", JSON.stringify(response.data.user));
-                    
-                    // Redirect to dashboard
-                    navigate("/dashboard");
-                }
-            }
-        } catch (err: any) {
-            setError(err.response?.data?.message || "Something went wrong");
-        } finally {
-            setLoading(false);
+        if (response.data.success) {
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+
+            navigate("/dashboard");
         }
+    }
+} catch (err: any) {
+    setError(err.response?.data?.message || "Something went wrong");
+} finally {
+    setLoading(false);
+}
     };
-
     // NEW: Reset OTP flow
     const handleBack = () => {
         setOtpSent(false);

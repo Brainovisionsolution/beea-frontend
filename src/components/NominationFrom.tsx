@@ -99,17 +99,15 @@ const NominationForm: React.FC = () => {
                 }
             });
 
-            // API call remains the same
             const response = await axios.post<{ success: boolean; data: SuccessResponse }>(
-                'http://localhost:5000/api/nominations/submit',
-                formDataToSend,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }
-            );
-
+    '/api/nominations/submit',
+    formDataToSend,
+    {
+        headers: {
+            'Content-Type': 'multipart/form-data'
+        }
+    }
+);
             setSuccess(response.data.data);
             setStep(2);
             
