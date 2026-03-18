@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { Upload, CheckCircle, AlertCircle } from 'lucide-react';
+import { Upload, CheckCircle, AlertCircle, Search } from 'lucide-react';
 
 // Define interfaces for type safety
 interface FormData {
@@ -53,49 +53,56 @@ const NominationForm: React.FC = () => {
     const [error, setError] = useState<string>('');
     const [success, setSuccess] = useState<SuccessResponse | null>(null);
     const [step, setStep] = useState<number>(1);
+    const [categorySearch, setCategorySearch] = useState<string>('');
 
     const categories: string[] = [
-  // 🔷 General / Existing
-  'Best Educational Institution',
-  'Outstanding Teacher Award',
-  'Innovative Teaching Methodology',
-  'Research Excellence Award',
-  'Young Achiever Award',
-  'Lifetime Achievement Award',
-  'Best Engineering College',
-  'Best Management Institute',
+        // 🔷 General / Existing
+        'Best Educational Institution',
+        'Outstanding Teacher Award',
+        'Innovative Teaching Methodology',
+        'Research Excellence Award',
+        'Young Achiever Award',
+        'Lifetime Achievement Award',
+        'Best Engineering College',
+        'Best Management Institute',
 
-  // 🏫 College Awards
-  'Overall Excellence in Education',
-  'Academic Excellence',
-  'Innovation in Teaching & Learning',
-  'Best in Research & Development',
-  'Student Support & Welfare Excellence',
-  'Outstanding Infrastructure & Facilities',
-  'Industry Collaboration & Placements',
-  'Social Impact & Community Engagement',
-  'Sustainable Green Campus Initiative',
+        // 🏫 College Awards
+        'Overall Excellence in Education',
+        'Academic Excellence',
+        'Innovation in Teaching & Learning',
+        'Best in Research & Development',
+        'Student Support & Welfare Excellence',
+        'Outstanding Infrastructure & Facilities',
+        'Industry Collaboration & Placements',
+        'Social Impact & Community Engagement',
+        'Sustainable Green Campus Initiative',
 
-  // 👤 Individual Awards
-  'Samarpana Acharya Lifetime Achievement Award',
-  'Bhisma Acharya Individual Award',
-  'Sadhya Acharya Industry Collaboration Award',
-  'Jyestha Acharya Individual Award',
-  'Uttama Adhyapika Individual Award',
-  'Kalpa Acharya Individual Award',
-  'Yuva Acharya Individual Award',
-  'Niyukti Acharya Individual Award',
-  'Ananta Acharya Leadership Award',
-  'Shakti Acharya Empowerment Award',
-  'Shraddha Acharya Student Success Award',
-  'Udyam Acharya Entrepreneurship Award',
-  'Anveshana Acharya Research Mentorship Award',
-  'Vidya Ratna – Jewel of Education Award',
-  'Buddhiman Guru – Wise Teacher Award',
-  'Guru Shreshta – Greatest Teacher Award',
-  'Vidya Vibhushan – Ornament of Learning Award',
-  'Shiksha Samrat – Emperor of Education Award'
-];
+        // 👤 Individual Awards
+        'Samarpana Acharya Lifetime Achievement Award',
+        'Bhisma Acharya Individual Award',
+        'Sadhya Acharya Industry Collaboration Award',
+        'Jyestha Acharya Individual Award',
+        'Uttama Adhyapika Individual Award',
+        'Kalpa Acharya Individual Award',
+        'Yuva Acharya Individual Award',
+        'Niyukti Acharya Individual Award',
+        'Ananta Acharya Leadership Award',
+        'Shakti Acharya Empowerment Award',
+        'Shraddha Acharya Student Success Award',
+        'Udyam Acharya Entrepreneurship Award',
+        'Anveshana Acharya Research Mentorship Award',
+        'Vidya Ratna – Jewel of Education Award',
+        'Buddhiman Guru – Wise Teacher Award',
+        'Guru Shreshta – Greatest Teacher Award',
+        'Vidya Vibhushan – Ornament of Learning Award',
+        'Shiksha Samrat – Emperor of Education Award'
+    ];
+
+    // Filter categories based on search
+    const filteredCategories = categories.filter(category =>
+        category.toLowerCase().includes(categorySearch.toLowerCase())
+    );
+
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>): void => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
@@ -131,14 +138,14 @@ const NominationForm: React.FC = () => {
             });
 
             const response = await axios.post<{ success: boolean; data: SuccessResponse }>(
-    '/api/nominations/submit',
-    formDataToSend,
-    {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-    }
-);
+                '/api/nominations/submit',
+                formDataToSend,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }
+            );
             setSuccess(response.data.data);
             setStep(2);
             
@@ -363,19 +370,55 @@ const NominationForm: React.FC = () => {
                             <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-2">
                                 Nomination Category *
                             </label>
+                            
+                            {/* Category Search Input */}
+                            <div className="relative mb-2">
+                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <Search className="h-5 w-5 text-gray-400" />
+                                </div>
+                                <input
+                                    type="text"
+                                    placeholder="Search categories..."
+                                    value={categorySearch}
+                                    onChange={(e) => setCategorySearch(e.target.value)}
+                                    className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
+                                />
+                            </div>
+                            
+                            {/* Category Select with increased height and scroll */}
                             <select
                                 id="category"
                                 name="category"
                                 value={formData.category}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent"
+                                size={8}
+                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#D4AF37] focus:border-transparent overflow-y-auto"
+                                style={{ maxHeight: '200px' }}
                             >
                                 <option value="">Select Category</option>
-                                {categories.map(cat => (
-                                    <option key={cat} value={cat}>{cat}</option>
-                                ))}
+                                {filteredCategories.length > 0 ? (
+                                    filteredCategories.map(cat => (
+                                        <option key={cat} value={cat} className="py-1">
+                                            {cat}
+                                        </option>
+                                    ))
+                                ) : (
+                                    <option disabled>No categories found</option>
+                                )}
                             </select>
+                            
+                            {/* Category count and selection info */}
+                            <div className="mt-2 text-sm text-gray-500 flex justify-between items-center">
+                                <span>
+                                    {filteredCategories.length} category {filteredCategories.length === 1 ? 'available' : 'categories available'}
+                                </span>
+                                {formData.category && (
+                                    <span className="text-[#D4AF37] font-medium">
+                                        Selected: {formData.category}
+                                    </span>
+                                )}
+                            </div>
                         </div>
 
                         <div className="col-span-2">
