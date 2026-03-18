@@ -59,19 +59,21 @@ const Dashboard = () => {
 };
 
     const handleLogout = async () => {
-        try {
-            await axios.post(
-                'http://localhost:5000/api/auth/logout',
-                {},
-                { withCredentials: true }
-            );
-            localStorage.removeItem('user');
-            localStorage.removeItem('token');
-            navigate('/login');
-        } catch (error) {
-            console.error('Logout failed:', error);
-        }
-    };
+    try {
+        await axios.post(
+            '/api/auth/logout',
+            {},
+            { withCredentials: true }
+        );
+
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
+
+        navigate('/login');
+    } catch (error) {
+        console.error('Logout failed:', error);
+    }
+};
 
     const getStatusBadge = (status) => {
         const statusConfig = {
@@ -151,14 +153,18 @@ const Dashboard = () => {
                             <div className="bg-gradient-to-r from-[#D4AF37] to-[#F5E6C4] p-6 text-center">
                                 <div className="w-24 h-24 mx-auto bg-[#0B1A2F] rounded-full flex items-center justify-center mb-4">
                                     {nomination?.photo_path ? (
-                                        <img
-                                            src={`http://localhost:5000/${nomination.photo_path}`}
-                                            alt={nomination.full_name}
-                                            className="w-full h-full rounded-full object-cover"
-                                        />
-                                    ) : (
-                                        <User className="w-12 h-12 text-[#D4AF37]" />
-                                    )}
+    <img
+        src={
+            nomination.photo_path.startsWith("http")
+                ? nomination.photo_path
+                : `/uploads/${nomination.photo_path}`
+        }
+        alt={nomination.full_name}
+        className="w-full h-full rounded-full object-cover"
+    />
+) : (
+    <User className="w-12 h-12 text-[#D4AF37]" />
+)}
                                 </div>
                                 <h2 className="text-xl font-bold text-[#0B1A2F]">{nomination?.full_name}</h2>
                                 <p className="text-sm text-[#0B1A2F] opacity-80">{nomination?.designation}</p>

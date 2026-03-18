@@ -62,12 +62,9 @@ const AdminDashboard = () => {
     useEffect(() => {
         fetchNominations();
     }, []);
-
-    const downloadExcel = () => {
-        window.open(
-            "http://localhost:5000/api/admin/nominations-excel"
-        );
-    };
+const downloadExcel = () => {
+    window.open("/api/admin/nominations-excel");
+};
 
     // Get unique categories for filter
     const categories = [...new Set(nominations.map(n => n.category))];
