@@ -20,7 +20,6 @@ const Index = () => {
       <Stats/>
       <AwardCategories/>
       <WhyNominate/>
-      <EventHighlights/>
       <JurySection/>
       <Sponsors/>
       <NominationProcess/>

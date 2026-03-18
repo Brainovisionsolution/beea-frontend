@@ -317,7 +317,7 @@ export default function EventHighlights() {
             </div>
             <div className="h-8 w-px" style={{ backgroundColor: 'rgba(212, 175, 55, 0.3)' }}></div>
             <div>
-              <p className="font-body text-sm font-medium" style={{ color: '#D4AF37', fontFamily: 'Poppins, sans-serif' }}>BRAIN U VISION</p>
+              <p className="font-body text-sm font-medium" style={{ color: '#D4AF37', fontFamily: 'Poppins, sans-serif' }}>BRAINOVISION</p>
               <p className="font-body text-xs" style={{ color: '#F5E6C4', opacity: 0.7, fontFamily: 'Poppins, sans-serif' }}>all the way</p>
             </div>
           </div>

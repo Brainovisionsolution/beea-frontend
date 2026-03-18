@@ -18,64 +18,68 @@ export default function About() {
     },
   ];
 
+  const handleNominateClick = () => {
+    window.location.href = '/nominate';
+  };
+
   return (
-    <section id="about" className="min-h-screen py-20 relative overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
+    <section id="about" className="min-h-screen py-12 md:py-20 relative overflow-hidden" style={{ backgroundColor: '#FFFFFF' }}>
       {/* Decorative Elements - Metallic Gold (#D4AF37) accents */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px]">
-        <div className="absolute top-20 right-20 w-64 h-64 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}></div>
-        <div className="absolute top-40 right-40 w-96 h-96 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.1)' }}></div>
-        <div className="absolute bottom-20 right-60 w-48 h-48 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.15)' }}></div>
+      <div className="absolute top-0 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px]">
+        <div className="absolute top-10 md:top-20 right-10 md:right-20 w-32 md:w-64 h-32 md:h-64 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.2)' }}></div>
+        <div className="absolute top-20 md:top-40 right-20 md:right-40 w-48 md:w-96 h-48 md:h-96 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.1)' }}></div>
+        <div className="absolute bottom-10 md:bottom-20 right-30 md:right-60 w-24 md:w-48 h-24 md:h-48 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.15)' }}></div>
       </div>
       
       {/* Decorative Dots - Metallic Gold */}
-      <div className="absolute top-40 left-1/3 flex gap-2">
-        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D4AF37' }}></div>
-        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.6 }}></div>
-        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.3 }}></div>
+      <div className="absolute top-20 md:top-40 left-1/3 flex gap-2">
+        <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full" style={{ backgroundColor: '#D4AF37' }}></div>
+        <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.6 }}></div>
+        <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.3 }}></div>
       </div>
-      <div className="absolute bottom-40 right-1/4 flex gap-2">
-        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D4AF37' }}></div>
-        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.6 }}></div>
-        <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.3 }}></div>
+      <div className="absolute bottom-20 md:bottom-40 right-1/4 flex gap-2">
+        <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full" style={{ backgroundColor: '#D4AF37' }}></div>
+        <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.6 }}></div>
+        <div className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full" style={{ backgroundColor: '#D4AF37', opacity: 0.3 }}></div>
       </div>
 
       {/* Deep Navy Gradient decorative elements */}
-      <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full filter blur-3xl" style={{ 
+      <div className="absolute bottom-0 left-0 w-48 md:w-96 h-48 md:h-96 rounded-full filter blur-3xl" style={{ 
         background: 'linear-gradient(135deg, #0E2A47 0%, #071421 100%)',
         opacity: 0.05
       }}></div>
       
-      <div className="absolute top-1/2 left-1/4 w-64 h-64 rounded-full filter blur-2xl" style={{ 
+      <div className="absolute top-1/2 left-1/4 w-32 md:w-64 h-32 md:h-64 rounded-full filter blur-2xl" style={{ 
         background: '#0B1C2D',
         opacity: 0.03
       }}></div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Left side - Larger Image */}
-          <div className="relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+          {/* Left side - Larger Image - Reordered for mobile */}
+          <div className="relative order-1 md:order-none w-full">
             <div className="relative">
               <img 
                 src="/logos/momento.png" 
                 alt="BEEA Award Moment"
-                className="w-full max-w-[900px] mx-auto relative z-10"
+                className="w-full max-w-[400px] md:max-w-[900px] mx-auto relative z-10"
               />
               {/* Decorative gold circle behind image */}
-              <div className="absolute -bottom-10 -right-10 w-64 h-64 rounded-full" style={{ 
+              <div className="absolute -bottom-5 md:-bottom-10 -right-5 md:-right-10 w-32 md:w-64 h-32 md:h-64 rounded-full" style={{ 
                 background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0) 70%)'
               }}></div>
-              <div className="absolute -top-10 -left-10 w-48 h-48 rounded-full" style={{ 
+              <div className="absolute -top-5 md:-top-10 -left-5 md:-left-10 w-24 md:w-48 h-24 md:h-48 rounded-full" style={{ 
                 background: 'radial-gradient(circle, rgba(245,230,196,0.15) 0%, rgba(245,230,196,0) 70%)'
               }}></div>
             </div>
           </div>
 
           {/* Right side - About BEEA content */}
-          <div className="max-w-xl">
+          <div className="order-2 md:order-none max-w-xl w-full">
             {/* Decorative element - Metallic Gold */}
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-8 h-0.5" style={{ backgroundColor: '#D4AF37' }}></div>
-              <span className="font-body text-sm font-semibold tracking-[0.3em]" style={{ 
+            <div className="flex items-center gap-2 mb-4 md:mb-6">
+              <div className="w-6 md:w-8 h-0.5" style={{ backgroundColor: '#D4AF37' }}></div>
+              <span className="font-body text-xs md:text-sm font-semibold tracking-[0.2em] md:tracking-[0.3em]" style={{ 
                 color: '#0B1C2D',
                 opacity: 0.7,
                 fontFamily: 'Poppins, sans-serif'
@@ -85,7 +89,7 @@ export default function About() {
             </div>
 
             {/* Main Heading - Midnight Blue (#0B1C2D) */}
-            <h2 className="font-heading text-5xl md:text-6xl font-bold mb-4 leading-tight" style={{ 
+            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-2 leading-tight" style={{ 
               color: '#0B1C2D',
               fontFamily: 'Playfair Display, serif'
             }}>
@@ -93,13 +97,13 @@ export default function About() {
             </h2>
             
             {/* Excellence in education across India with colored words */}
-            <h3 className="font-heading text-5xl md:text-6xl font-bold mb-8 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
+            <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 md:mb-8 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
               <span style={{ color: '#0B1C2D' }}>Bharat Education Excellence</span>
               <span style={{ color: '#D4AF37' }}> Awards</span>
             </h3>
 
             {/* Description - Soft Champagne text on white background */}
-            <p className="font-body text-lg leading-relaxed mb-10" style={{ 
+            <p className="font-body text-base md:text-lg leading-relaxed mb-8 md:mb-10" style={{ 
               color: '#0B1C2D',
               opacity: 0.8,
               fontFamily: 'Poppins, sans-serif'
@@ -108,20 +112,21 @@ export default function About() {
               <span className="font-semibold" style={{ color: '#D4AF37' }}>excellence</span> and innovation.
             </p>
 
-            {/* Info Points Grid - Hidden but preserved for future use */}
-            <div className="hidden grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {/* Info Points Grid - Visible on mobile, hidden on desktop? 
+                Currently hidden but you can make it visible by removing 'hidden' class */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-10">
               {infoPoints.map((point, index) => (
-                <div key={index} className="p-6 rounded-lg" style={{ 
+                <div key={index} className="p-4 md:p-6 rounded-lg" style={{ 
                   backgroundColor: 'rgba(212, 175, 55, 0.03)',
                   border: '1px solid rgba(212, 175, 55, 0.1)'
                 }}>
-                  <h4 className="font-heading text-xl font-bold mb-2" style={{ 
+                  <h4 className="font-heading text-lg md:text-xl font-bold mb-2" style={{ 
                     color: '#0B1C2D',
                     fontFamily: 'Playfair Display, serif'
                   }}>
                     {point.title}
                   </h4>
-                  <p className="font-body text-sm" style={{ 
+                  <p className="font-body text-xs md:text-sm" style={{ 
                     color: '#0B1C2D',
                     opacity: 0.7,
                     fontFamily: 'Poppins, sans-serif'
@@ -132,50 +137,27 @@ export default function About() {
               ))}
             </div>
 
-            {/* Learn More Link */}
-            <a 
-              href="#" 
-              className="inline-flex items-center gap-3 group mb-16"
-            >
-              <span className="font-body text-lg transition-colors duration-300" style={{ 
-                color: '#0B1C2D',
-                opacity: 0.8,
-                fontFamily: 'Poppins, sans-serif'
-              }}>
-                Learn more about BEEA
-              </span>
-              <svg 
-                className="w-5 h-5 transition-all duration-300 group-hover:translate-x-2" 
-                style={{ color: '#D4AF37' }}
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </a>
-
             {/* Award Icon Section with Nominate Button */}
-            <div className="flex items-center gap-8">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
               {/* Award Icon - Metallic Gold */}
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <svg 
-                    className="w-12 h-12" 
+                    className="w-10 md:w-12 h-10 md:h-12" 
                     style={{ color: '#D4AF37' }}
                     fill="currentColor" 
                     viewBox="0 0 24 24"
                   >
                     <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/>
                   </svg>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full animate-pulse" style={{ backgroundColor: '#D4AF37' }}></div>
+                  <div className="absolute -top-1 -right-1 w-3 md:w-4 h-3 md:h-4 rounded-full animate-pulse" style={{ backgroundColor: '#D4AF37' }}></div>
                 </div>
                 <div>
-                  <div className="font-heading text-2xl font-bold" style={{ 
+                  <div className="font-heading text-xl md:text-2xl font-bold" style={{ 
                     color: '#0B1C2D',
                     fontFamily: 'Playfair Display, serif'
                   }}>2500+</div>
-                  <div className="font-body text-sm" style={{ 
+                  <div className="font-body text-xs md:text-sm" style={{ 
                     color: '#0B1C2D',
                     opacity: 0.7,
                     fontFamily: 'Poppins, sans-serif'
@@ -185,7 +167,8 @@ export default function About() {
 
               {/* Nominate Now Button - Deep Navy Gradient */}
               <button 
-                className="px-8 py-4 font-heading font-semibold text-lg rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                onClick={handleNominateClick}
+                className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 font-heading font-semibold text-base md:text-lg rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 style={{ 
                   background: 'linear-gradient(135deg, #0E2A47 0%, #071421 100%)',
                   color: '#F5E6C4',
