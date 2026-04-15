@@ -51,16 +51,16 @@ export default function WhyNominate() {
   ];
 
   return (
-    <section id="why-nominate" className="relative py-24 overflow-hidden" style={{ backgroundColor: '#0B1C2D' }}>
-      {/* Deep Navy Gradient Overlay */}
+    <section id="why-nominate" className="relative py-24 overflow-hidden" style={{ backgroundColor: '#0A1628' }}>
+      {/* Clean Dark Navy Gradient Overlay */}
       <div 
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(135deg, #0E2A47 0%, #071421 100%)'
+          background: 'linear-gradient(135deg, #0A1628 0%, #0D1B2A 50%, #0A1628 100%)'
         }}
       />
 
-      {/* Decorative Gold Curves - Matching Hero */}
+      {/* Subtle Gold Decorative Elements */}
       <svg
         className="absolute -top-12 -left-16 w-[200px] h-[200px] lg:w-[260px] lg:h-[260px]"
         viewBox="0 0 260 260"
@@ -69,9 +69,9 @@ export default function WhyNominate() {
         <path
           d="M 250 230 C 250 100, 160 10, 30 10"
           stroke="#D4AF37"
-          strokeWidth="3"
+          strokeWidth="2"
           strokeLinecap="round"
-          opacity="0.2"
+          opacity="0.12"
         />
       </svg>
 
@@ -83,9 +83,9 @@ export default function WhyNominate() {
         <path
           d="M 10 30 C 10 160, 100 250, 230 250"
           stroke="#D4AF37"
-          strokeWidth="3"
+          strokeWidth="2"
           strokeLinecap="round"
-          opacity="0.2"
+          opacity="0.12"
         />
       </svg>
 
@@ -97,9 +97,9 @@ export default function WhyNominate() {
         <path
           d="M 70 10 Q 0 160, 70 310"
           stroke="#D4AF37"
-          strokeWidth="3"
+          strokeWidth="2"
           strokeLinecap="round"
-          opacity="0.2"
+          opacity="0.12"
         />
       </svg>
 
@@ -111,35 +111,35 @@ export default function WhyNominate() {
         <path
           d="M 10 10 Q 80 140, 10 270"
           stroke="#D4AF37"
-          strokeWidth="3"
+          strokeWidth="2"
           strokeLinecap="round"
-          opacity="0.2"
+          opacity="0.12"
         />
       </svg>
 
-      {/* Gold Rings */}
+      {/* Subtle Gold Rings */}
       <div
         className="absolute top-20 left-20 w-72 h-72 rounded-full"
         style={{
-          border: "2px solid #D4AF37",
-          opacity: 0.1
+          border: "1px solid #D4AF37",
+          opacity: 0.06
         }}
       />
       <div
         className="absolute bottom-20 right-20 w-96 h-96 rounded-full"
         style={{
           border: "1px solid #D4AF37",
-          opacity: 0.1
+          opacity: 0.05
         }}
       />
 
-      {/* Gold Dot Patterns */}
+      {/* Minimal Dot Patterns */}
       <div className="absolute top-40 left-1/3 grid grid-cols-5 gap-[6px]">
         {Array.from({ length: 20 }).map((_, i) => (
           <div
             key={`top-${i}`}
-            className="w-[5px] h-[5px] rounded-full"
-            style={{ backgroundColor: '#D4AF37', opacity: 0.2 }}
+            className="w-[3px] h-[3px] rounded-full"
+            style={{ backgroundColor: '#D4AF37', opacity: 0.12 }}
           />
         ))}
       </div>
@@ -148,16 +148,16 @@ export default function WhyNominate() {
         {Array.from({ length: 16 }).map((_, i) => (
           <div
             key={`bottom-${i}`}
-            className="w-[5px] h-[5px] rounded-full"
-            style={{ backgroundColor: '#D4AF37', opacity: 0.15 }}
+            className="w-[3px] h-[3px] rounded-full"
+            style={{ backgroundColor: '#D4AF37', opacity: 0.1 }}
           />
         ))}
       </div>
 
-      {/* Floating Gold Circles */}
-      <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full animate-float-up" style={{ backgroundColor: '#D4AF37', opacity: 0.2 }} />
-      <div className="absolute bottom-1/3 right-1/4 w-6 h-6 rounded-full animate-float-down" style={{ backgroundColor: '#D4AF37', opacity: 0.15 }} />
-      <div className="absolute top-2/3 left-1/2 w-3 h-3 rounded-full animate-float-up" style={{ backgroundColor: '#D4AF37', opacity: 0.2, animationDelay: '1s' }} />
+      {/* Subtle Floating Circles */}
+      <div className="absolute top-1/4 left-1/4 w-3 h-3 rounded-full animate-float-up" style={{ backgroundColor: '#D4AF37', opacity: 0.12 }} />
+      <div className="absolute bottom-1/3 right-1/4 w-4 h-4 rounded-full animate-float-down" style={{ backgroundColor: '#D4AF37', opacity: 0.1 }} />
+      <div className="absolute top-2/3 left-1/2 w-2 h-2 rounded-full animate-float-up" style={{ backgroundColor: '#D4AF37', opacity: 0.12, animationDelay: '1s' }} />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header Section */}
@@ -181,9 +181,17 @@ export default function WhyNominate() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
             className="font-heading text-4xl md:text-5xl font-bold mb-6"
-            style={{ color: '#F5E6C4', fontFamily: 'Playfair Display, serif' }}
+            style={{ fontFamily: 'Playfair Display, serif' }}
           >
-            Benefits of Participation
+            <span style={{ color: '#FFFFFF' }}>Benefits of </span>
+            <span style={{ 
+              background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 50%, #D4AF37 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text'
+            }}>
+              Participation
+            </span>
           </motion.h2>
 
           <motion.div
@@ -208,22 +216,24 @@ export default function WhyNominate() {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group relative rounded-xl overflow-hidden"
               style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid rgba(212, 175, 55, 0.15)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(212, 175, 55, 0.1)',
                 backdropFilter: 'blur(10px)'
               }}
             >
-              {/* Top gold bar */}
+              {/* Top gold gradient bar */}
               <div 
-                className="h-1 w-full"
-                style={{ backgroundColor: '#D4AF37' }}
+                className="h-0.5 w-full"
+                style={{ 
+                  background: 'linear-gradient(90deg, transparent, #D4AF37, #F5E6C4, #D4AF37, transparent)'
+                }}
               />
               
               <div className="p-8">
                 {/* Icon */}
                 <div className="relative mb-6">
                   <div 
-                    className="absolute -inset-2 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                    className="absolute -inset-2 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500"
                     style={{ 
                       background: '#D4AF37',
                       filter: 'blur(8px)'
@@ -236,9 +246,9 @@ export default function WhyNominate() {
 
                 {/* Title */}
                 <h3 
-                  className="font-heading text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-[#D4AF37]"
+                  className="font-heading text-xl font-semibold mb-3 transition-colors duration-300"
                   style={{ 
-                    color: '#F5E6C4',
+                    color: '#FFFFFF',
                     fontFamily: 'Playfair Display, serif'
                   }}
                 >
@@ -249,8 +259,7 @@ export default function WhyNominate() {
                 <p 
                   className="font-body text-sm leading-relaxed"
                   style={{ 
-                    color: '#F5E6C4',
-                    opacity: 0.8,
+                    color: '#B8C5D6',
                     fontFamily: 'Poppins, sans-serif'
                   }}
                 >
@@ -262,8 +271,8 @@ export default function WhyNominate() {
               <div 
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl"
                 style={{
-                  border: '2px solid #D4AF37',
-                  boxShadow: '0 0 30px rgba(212, 175, 55, 0.2)'
+                  border: '1px solid rgba(212, 175, 55, 0.4)',
+                  boxShadow: '0 0 20px rgba(212, 175, 55, 0.1)'
                 }}
               />
             </motion.div>
@@ -280,15 +289,17 @@ export default function WhyNominate() {
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               className="group relative rounded-xl overflow-hidden"
               style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                border: '1px solid rgba(212, 175, 55, 0.15)',
+                background: 'rgba(255, 255, 255, 0.02)',
+                border: '1px solid rgba(212, 175, 55, 0.1)',
                 backdropFilter: 'blur(10px)'
               }}
             >
-              {/* Top gold bar */}
+              {/* Top gold gradient bar */}
               <div 
-                className="h-1 w-full"
-                style={{ backgroundColor: '#D4AF37' }}
+                className="h-0.5 w-full"
+                style={{ 
+                  background: 'linear-gradient(90deg, transparent, #D4AF37, #F5E6C4, #D4AF37, transparent)'
+                }}
               />
               
               <div className="p-8">
@@ -296,7 +307,7 @@ export default function WhyNominate() {
                   {/* Icon */}
                   <div className="relative flex-shrink-0">
                     <div 
-                      className="absolute -inset-2 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500"
+                      className="absolute -inset-2 rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-500"
                       style={{ 
                         background: '#D4AF37',
                         filter: 'blur(8px)'
@@ -310,9 +321,9 @@ export default function WhyNominate() {
                   <div>
                     {/* Title */}
                     <h3 
-                      className="font-heading text-xl font-semibold mb-3 transition-colors duration-300 group-hover:text-[#D4AF37]"
+                      className="font-heading text-xl font-semibold mb-3 transition-colors duration-300"
                       style={{ 
-                        color: '#F5E6C4',
+                        color: '#FFFFFF',
                         fontFamily: 'Playfair Display, serif'
                       }}
                     >
@@ -323,8 +334,7 @@ export default function WhyNominate() {
                     <p 
                       className="font-body text-sm leading-relaxed"
                       style={{ 
-                        color: '#F5E6C4',
-                        opacity: 0.8,
+                        color: '#B8C5D6',
                         fontFamily: 'Poppins, sans-serif'
                       }}
                     >
@@ -338,8 +348,8 @@ export default function WhyNominate() {
               <div 
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-xl"
                 style={{
-                  border: '2px solid #D4AF37',
-                  boxShadow: '0 0 30px rgba(212, 175, 55, 0.2)'
+                  border: '1px solid rgba(212, 175, 55, 0.4)',
+                  boxShadow: '0 0 20px rgba(212, 175, 55, 0.1)'
                 }}
               />
             </motion.div>
@@ -354,26 +364,50 @@ export default function WhyNominate() {
           className="rounded-2xl p-12 mb-16"
           style={{
             background: 'rgba(255, 255, 255, 0.02)',
-            border: '1px solid rgba(212, 175, 55, 0.15)',
+            border: '1px solid rgba(212, 175, 55, 0.1)',
             backdropFilter: 'blur(10px)'
           }}
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="text-center">
-              <div className="font-heading text-4xl font-bold mb-2" style={{ color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>500+</div>
-              <div className="font-body text-sm" style={{ color: '#F5E6C4', opacity: 0.8, fontFamily: 'Poppins, sans-serif' }}>Awards Presented</div>
+              <div className="font-heading text-4xl font-bold mb-2" style={{ 
+                background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontFamily: 'Playfair Display, serif' 
+              }}>500+</div>
+              <div className="font-body text-sm" style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}>Awards Presented</div>
             </div>
             <div className="text-center">
-              <div className="font-heading text-4xl font-bold mb-2" style={{ color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>200+</div>
-              <div className="font-body text-sm" style={{ color: '#F5E6C4', opacity: 0.8, fontFamily: 'Poppins, sans-serif' }}>Institutions</div>
+              <div className="font-heading text-4xl font-bold mb-2" style={{ 
+                background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontFamily: 'Playfair Display, serif' 
+              }}>200+</div>
+              <div className="font-body text-sm" style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}>Institutions</div>
             </div>
             <div className="text-center">
-              <div className="font-heading text-4xl font-bold mb-2" style={{ color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>50+</div>
-              <div className="font-body text-sm" style={{ color: '#F5E6C4', opacity: 0.8, fontFamily: 'Poppins, sans-serif' }}>Media Partners</div>
+              <div className="font-heading text-4xl font-bold mb-2" style={{ 
+                background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontFamily: 'Playfair Display, serif' 
+              }}>50+</div>
+              <div className="font-body text-sm" style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}>Media Partners</div>
             </div>
             <div className="text-center">
-              <div className="font-heading text-4xl font-bold mb-2" style={{ color: '#D4AF37', fontFamily: 'Playfair Display, serif' }}>1000+</div>
-              <div className="font-body text-sm" style={{ color: '#F5E6C4', opacity: 0.8, fontFamily: 'Poppins, sans-serif' }}>Network Members</div>
+              <div className="font-heading text-4xl font-bold mb-2" style={{ 
+                background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                fontFamily: 'Playfair Display, serif' 
+              }}>1000+</div>
+              <div className="font-body text-sm" style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}>Network Members</div>
             </div>
           </div>
         </motion.div>
@@ -385,19 +419,19 @@ export default function WhyNominate() {
           transition={{ duration: 0.5 }}
           className="text-center rounded-2xl p-12"
           style={{
-            background: 'linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(11,28,45,0.2) 100%)',
-            border: '1px solid rgba(212, 175, 55, 0.2)'
+            background: 'linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(13,27,42,0.2) 100%)',
+            border: '1px solid rgba(212, 175, 55, 0.15)'
           }}
         >
           <h3 
             className="font-heading text-3xl font-bold mb-4"
-            style={{ color: '#F5E6C4', fontFamily: 'Playfair Display, serif' }}
+            style={{ color: '#FFFFFF', fontFamily: 'Playfair Display, serif' }}
           >
             Ready to Begin Your Journey?
           </h3>
           <p 
             className="font-body mb-8 max-w-2xl mx-auto"
-            style={{ color: '#F5E6C4', opacity: 0.8, fontFamily: 'Poppins, sans-serif' }}
+            style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}
           >
             Join hundreds of educators and institutions who have already taken the step toward recognition.
           </p>
@@ -406,9 +440,9 @@ export default function WhyNominate() {
               className="px-8 py-4 font-heading font-semibold rounded-lg transition-all duration-300 hover:scale-105"
               style={{ 
                 background: '#D4AF37',
-                color: '#0B1C2D',
+                color: '#0A1628',
                 fontFamily: 'Playfair Display, serif',
-                boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)'
+                boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)'
               }}
             >
               Submit Nomination
@@ -417,9 +451,9 @@ export default function WhyNominate() {
               className="px-8 py-4 font-heading font-semibold rounded-lg transition-all duration-300 hover:scale-105"
               style={{ 
                 background: 'transparent',
-                color: '#F5E6C4',
+                color: '#D4AF37',
                 fontFamily: 'Playfair Display, serif',
-                border: '2px solid #D4AF37'
+                border: '1px solid #D4AF37'
               }}
             >
               Download Brochure
@@ -433,13 +467,13 @@ export default function WhyNominate() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
           className="flex flex-wrap items-center justify-center gap-8 mt-12 pt-8"
-          style={{ borderTop: '1px solid rgba(212, 175, 55, 0.15)' }}
+          style={{ borderTop: '1px solid rgba(212, 175, 55, 0.1)' }}
         >
           {["✓ No Registration Fee", "✓ Pan India Coverage", "✓ 100% Transparent"].map((text, i) => (
             <span 
               key={i}
               className="font-body text-sm"
-              style={{ color: '#F5E6C4', opacity: 0.7, fontFamily: 'Poppins, sans-serif' }}
+              style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}
             >
               {text}
             </span>
@@ -451,12 +485,12 @@ export default function WhyNominate() {
       <style>{`
         @keyframes float-up {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-20px); }
+          50% { transform: translateY(-15px); }
         }
         
         @keyframes float-down {
           0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(20px); }
+          50% { transform: translateY(15px); }
         }
         
         .animate-float-up {

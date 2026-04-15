@@ -18,24 +18,24 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ backgroundColor: '#0B1A2F' }}>
-      {/* Dark Navy Gradient Overlay - Enhanced */}
+    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ backgroundColor: '#0A1628' }}>
+      {/* Clean Dark Navy Gradient Overlay */}
       <div 
         className="absolute inset-0"
         style={{
-          background: 'radial-gradient(circle at 30% 30%, #132C42 0%, #051220 100%)'
+          background: 'linear-gradient(135deg, #0A1628 0%, #0D1B2A 50%, #0A1628 100%)'
         }}
       />
 
-      {/* Dramatic Spotlight Effect */}
+      {/* Subtle Gold Spotlight Effect */}
       <motion.div 
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(212,175,55,0.08) 0%, transparent 70%)',
           filter: 'blur(60px)'
         }}
         animate={{
-          scale: [1, 1.2, 1],
+          scale: [1, 1.1, 1],
           opacity: [0.3, 0.5, 0.3]
         }}
         transition={{
@@ -45,44 +45,24 @@ export default function Hero() {
         }}
       />
 
-      {/* Secondary Spotlight */}
-      <motion.div 
-        className="absolute top-20 right-20 w-[400px] h-[400px] rounded-full"
-        style={{
-          background: 'radial-gradient(circle, rgba(245,230,196,0.1) 0%, transparent 70%)',
-          filter: 'blur(50px)'
-        }}
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.2, 0.4, 0.2]
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-          delay: 1
-        }}
-      />
-
-      {/* Gold Particle Effect */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+      {/* Minimal Gold Particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 rounded-full"
+            className="absolute w-px h-px rounded-full"
             style={{
-              backgroundColor: i % 2 === 0 ? '#D4AF37' : '#F5E6C4',
+              backgroundColor: '#D4AF37',
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
-              opacity: 0.2
+              opacity: 0.15
             }}
             animate={{
-              y: [0, -30, 0],
-              x: [0, i % 2 === 0 ? 20 : -20, 0],
-              opacity: [0.1, 0.3, 0.1]
+              y: [0, -20, 0],
+              opacity: [0.1, 0.25, 0.1]
             }}
             transition={{
-              duration: 5 + i,
+              duration: 8 + i,
               repeat: Infinity,
               ease: "easeInOut",
               delay: i * 0.2
@@ -101,19 +81,18 @@ export default function Hero() {
             transition={{ duration: 0.7 }}
             className="space-y-6 max-w-lg"
           >
-            {/* Subtitle with enhanced animation */}
+            {/* Subtitle */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
               className="relative inline-block"
             >
-              {/* Gold glow behind subtitle */}
               <div 
                 className="absolute -inset-2 blur-xl"
                 style={{ 
                   background: 'radial-gradient(circle, #D4AF37 0%, transparent 70%)',
-                  opacity: 0.3
+                  opacity: 0.15
                 }}
               />
               <p 
@@ -124,36 +103,34 @@ export default function Hero() {
               </p>
             </motion.div>
 
-            {/* Main Heading - 10% Bigger */}
+            {/* Main Heading */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.7 }}
               className="font-heading font-extrabold text-5xl md:text-6xl lg:text-[4rem] xl:text-7xl leading-tight"
-              style={{ fontFamily: 'Playfair Display, serif', color: '#F5E6C4' }}
+              style={{ fontFamily: 'Playfair Display, serif', color: '#FFFFFF' }}
             >
               Celebrating{" "}
-              <motion.span 
-                style={{ color: '#D4AF37' }}
-                animate={{ 
-                  textShadow: ['0 0 10px rgba(212,175,55,0.3)', '0 0 20px rgba(212,175,55,0.6)', '0 0 10px rgba(212,175,55,0.3)']
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
+              <span style={{ 
+                background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 50%, #D4AF37 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>
                 excellence
-              </motion.span>
+              </span>
               <br />
               in education across
               <br />
-              <motion.span 
-                style={{ color: '#D4AF37' }}
-                animate={{ 
-                  textShadow: ['0 0 10px rgba(212,175,55,0.3)', '0 0 20px rgba(212,175,55,0.6)', '0 0 10px rgba(212,175,55,0.3)']
-                }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-              >
+              <span style={{ 
+                background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 50%, #D4AF37 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>
                 India.
-              </motion.span>
+              </span>
             </motion.h1>
 
             {/* Description */}
@@ -162,7 +139,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.7 }}
               className="text-base lg:text-lg leading-relaxed"
-              style={{ color: '#F5E6C4', fontFamily: 'Poppins, sans-serif' }}
+              style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}
             >
               Honoring outstanding institutions and educators who shape the future of our nation through the Bharath Education Excellence Awards.
             </motion.p>
@@ -176,32 +153,27 @@ export default function Hero() {
             >
               <motion.a
                 href="#nominate"
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative inline-flex items-center gap-2 px-8 py-4 font-heading font-semibold text-sm tracking-wide rounded-full overflow-hidden group"
                 style={{ 
                   backgroundColor: '#D4AF37', 
-                  color: '#0B1A2F',
+                  color: '#0A1628',
                   fontFamily: 'Playfair Display, serif'
                 }}
               >
-                {/* Gold glow effect on hover */}
-                <motion.div 
-                  className="absolute inset-0"
-                  style={{ 
-                    background: 'radial-gradient(circle at center, #F5E6C4 0%, #D4AF37 100%)',
-                    opacity: 0
-                  }}
-                  whileHover={{ opacity: 0.4 }}
-                  transition={{ duration: 0.3 }}
-                />
                 <span className="relative z-10">Nominate Now</span>
                 <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 
-                {/* Pulsing glow ring */}
-                <div 
-                  className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-60 transition-opacity duration-700 blur-xl"
-                  style={{ background: '#D4AF37' }}
+                {/* Hover effect */}
+                <motion.div 
+                  className="absolute inset-0"
+                  style={{ 
+                    background: 'linear-gradient(135deg, #F5E6C4 0%, #D4AF37 100%)',
+                    opacity: 0
+                  }}
+                  whileHover={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
                 />
               </motion.a>
               
@@ -210,17 +182,17 @@ export default function Hero() {
                 whileHover={{ x: 5 }}
                 className="inline-flex items-center gap-2 font-heading font-semibold text-sm tracking-wide transition-all"
                 style={{ 
-                  color: '#F5E6C4',
+                  color: '#D4AF37',
                   fontFamily: 'Playfair Display, serif'
                 }}
               >
                 Learn more about BEEA
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-4 h-4" />
               </motion.a>
             </motion.div>
           </motion.div>
 
-          {/* ===== RIGHT SIDE - Circular Image Composition ===== */}
+          {/* ===== RIGHT SIDE - Circular Image Composition (UNCHANGED) ===== */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -232,10 +204,10 @@ export default function Hero() {
               {/* Large background blob circle with animation */}
               <motion.div 
                 className="absolute inset-0 rounded-full"
-                style={{ backgroundColor: '#D4AF37', opacity: 0.1 }}
+                style={{ backgroundColor: '#D4AF37', opacity: 0.08 }}
                 animate={{
                   scale: [1, 1.05, 1],
-                  opacity: [0.1, 0.15, 0.1]
+                  opacity: [0.08, 0.12, 0.08]
                 }}
                 transition={{
                   duration: 6,
@@ -255,8 +227,9 @@ export default function Hero() {
                 <path
                   d="M 250 230 C 250 100, 160 10, 30 10"
                   stroke="#D4AF37"
-                  strokeWidth="3"
+                  strokeWidth="2"
                   strokeLinecap="round"
+                  opacity="0.4"
                 />
               </svg>
 
@@ -269,8 +242,9 @@ export default function Hero() {
                 <path
                   d="M 10 30 C 10 160, 100 250, 230 250"
                   stroke="#D4AF37"
-                  strokeWidth="3"
+                  strokeWidth="2"
                   strokeLinecap="round"
+                  opacity="0.4"
                 />
               </svg>
 
@@ -283,8 +257,9 @@ export default function Hero() {
                 <path
                   d="M 70 10 Q 0 160, 70 310"
                   stroke="#D4AF37"
-                  strokeWidth="3"
+                  strokeWidth="2"
                   strokeLinecap="round"
+                  opacity="0.4"
                 />
               </svg>
 
@@ -297,8 +272,9 @@ export default function Hero() {
                 <path
                   d="M 10 10 Q 80 140, 10 270"
                   stroke="#D4AF37"
-                  strokeWidth="3"
+                  strokeWidth="2"
                   strokeLinecap="round"
+                  opacity="0.4"
                 />
               </svg>
 
@@ -306,12 +282,12 @@ export default function Hero() {
               <motion.div
                 className="absolute -inset-5 rounded-full"
                 style={{
-                  border: "2px solid #D4AF37",
-                  opacity: 0.3
+                  border: "1px solid #D4AF37",
+                  opacity: 0.25
                 }}
                 animate={{
                   scale: [1, 1.02, 1],
-                  opacity: [0.3, 0.4, 0.3]
+                  opacity: [0.25, 0.35, 0.25]
                 }}
                 transition={{
                   duration: 4,
@@ -323,7 +299,7 @@ export default function Hero() {
                 className="absolute -inset-10 rounded-full"
                 style={{
                   border: "1px solid #D4AF37",
-                  opacity: 0.2
+                  opacity: 0.15
                 }}
               />
 
@@ -332,10 +308,10 @@ export default function Hero() {
                 {Array.from({ length: 25 }).map((_, i) => (
                   <motion.div
                     key={`tr-${i}`}
-                    className="w-[5px] h-[5px] rounded-full"
+                    className="w-[4px] h-[4px] rounded-full"
                     style={{ backgroundColor: '#D4AF37' }}
                     animate={{
-                      opacity: [0.5, 1, 0.5]
+                      opacity: [0.4, 0.8, 0.4]
                     }}
                     transition={{
                       duration: 2,
@@ -351,10 +327,10 @@ export default function Hero() {
                 {Array.from({ length: 16 }).map((_, i) => (
                   <motion.div
                     key={`bl-${i}`}
-                    className="w-[5px] h-[5px] rounded-full"
+                    className="w-[4px] h-[4px] rounded-full"
                     style={{ backgroundColor: '#D4AF37' }}
                     animate={{
-                      opacity: [0.3, 0.8, 0.3]
+                      opacity: [0.3, 0.7, 0.3]
                     }}
                     transition={{
                       duration: 2,
@@ -367,11 +343,11 @@ export default function Hero() {
 
               {/* Floating small circle accents with animation */}
               <motion.div 
-                className="absolute -top-8 left-1/4 w-10 h-10 rounded-full"
-                style={{ backgroundColor: '#D4AF37', opacity: 0.2 }}
+                className="absolute -top-8 left-1/4 w-8 h-8 rounded-full"
+                style={{ backgroundColor: '#D4AF37', opacity: 0.15 }}
                 animate={{
                   y: [0, -15, 0],
-                  opacity: [0.2, 0.3, 0.2]
+                  opacity: [0.15, 0.25, 0.15]
                 }}
                 transition={{
                   duration: 5,
@@ -380,11 +356,11 @@ export default function Hero() {
                 }}
               />
               <motion.div 
-                className="absolute -bottom-6 right-1/4 w-7 h-7 rounded-full"
-                style={{ backgroundColor: '#D4AF37', opacity: 0.2 }}
+                className="absolute -bottom-6 right-1/4 w-6 h-6 rounded-full"
+                style={{ backgroundColor: '#D4AF37', opacity: 0.15 }}
                 animate={{
                   y: [0, 15, 0],
-                  opacity: [0.2, 0.3, 0.2]
+                  opacity: [0.15, 0.25, 0.15]
                 }}
                 transition={{
                   duration: 6,
@@ -394,11 +370,11 @@ export default function Hero() {
                 }}
               />
               <motion.div 
-                className="absolute top-1/2 -right-14 w-5 h-5 rounded-full"
-                style={{ backgroundColor: '#D4AF37', opacity: 0.3 }}
+                className="absolute top-1/2 -right-14 w-4 h-4 rounded-full"
+                style={{ backgroundColor: '#D4AF37', opacity: 0.2 }}
                 animate={{
                   x: [0, -10, 0],
-                  opacity: [0.3, 0.5, 0.3]
+                  opacity: [0.2, 0.35, 0.2]
                 }}
                 transition={{
                   duration: 4,
@@ -409,10 +385,10 @@ export default function Hero() {
 
               {/* Main circular image with gold border */}
               <div 
-                className="absolute inset-3 rounded-full overflow-hidden shadow-2xl border-4"
+                className="absolute inset-3 rounded-full overflow-hidden shadow-2xl border-2"
                 style={{ 
                   borderColor: '#D4AF37',
-                  backgroundColor: '#0B1A2F'
+                  backgroundColor: '#0A1628'
                 }}
               >
                 {images.map((src, i) => (
@@ -436,7 +412,7 @@ export default function Hero() {
                 <div 
                   className="absolute inset-0"
                   style={{ 
-                    background: 'linear-gradient(to top, rgba(212, 175, 55, 0.2), transparent)'
+                    background: 'linear-gradient(to top, rgba(212, 175, 55, 0.15), transparent)'
                   }}
                 />
               </div>
@@ -446,12 +422,12 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1, duration: 0.5, type: "spring" }}
-                whileHover={{ scale: 1.1, rotate: 2 }}
+                whileHover={{ scale: 1.05, rotate: 2 }}
                 className="absolute -bottom-2 right-4 md:right-8 rounded-2xl shadow-xl px-5 py-3 flex items-center gap-3 cursor-pointer"
                 style={{ 
                   backgroundColor: '#FFFFFF',
-                  border: '2px solid #D4AF37',
-                  boxShadow: '0 10px 30px rgba(212, 175, 55, 0.3)'
+                  border: '1px solid #D4AF37',
+                  boxShadow: '0 10px 30px rgba(212, 175, 55, 0.2)'
                 }}
               >
                 <motion.div 
@@ -466,11 +442,11 @@ export default function Hero() {
                     ease: "easeInOut"
                   }}
                 >
-                  <span style={{ color: '#0B1A2F' }} className="text-lg">🏆</span>
+                  <span style={{ color: '#0A1628' }} className="text-lg">🏆</span>
                 </motion.div>
                 <div>
-                  <p className="font-heading font-bold text-sm" style={{ color: '#0B1A2F', fontFamily: 'Playfair Display, serif' }}>2500+</p>
-                  <p className="text-xs" style={{ color: '#0B1A2F', fontFamily: 'Poppins, sans-serif' }}>Awards Given</p>
+                  <p className="font-heading font-bold text-sm" style={{ color: '#0A1628', fontFamily: 'Playfair Display, serif' }}>2500+</p>
+                  <p className="text-xs" style={{ color: '#0A1628', fontFamily: 'Poppins, sans-serif' }}>Awards Given</p>
                 </div>
               </motion.div>
 
@@ -479,16 +455,16 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.2, duration: 0.5, type: "spring" }}
-                whileHover={{ scale: 1.1 }}
+                whileHover={{ scale: 1.05 }}
                 className="absolute -top-2 left-0 md:left-4 rounded-2xl shadow-xl px-4 py-2.5 cursor-pointer"
                 style={{ 
                   backgroundColor: '#FFFFFF',
-                  border: '2px solid #D4AF37',
-                  boxShadow: '0 10px 30px rgba(212, 175, 55, 0.3)'
+                  border: '1px solid #D4AF37',
+                  boxShadow: '0 10px 30px rgba(212, 175, 55, 0.2)'
                 }}
               >
-                <p className="font-heading font-bold text-sm" style={{ color: '#0B1A2F', fontFamily: 'Playfair Display, serif' }}>BEEA</p>
-                <p className="text-[10px]" style={{ color: '#0B1A2F', fontFamily: 'Poppins, sans-serif' }}>Since 2020</p>
+                <p className="font-heading font-bold text-sm" style={{ color: '#0A1628', fontFamily: 'Playfair Display, serif' }}>BEEA</p>
+                <p className="text-[10px]" style={{ color: '#0A1628', fontFamily: 'Poppins, sans-serif' }}>Since 2020</p>
               </motion.div>
 
               {/* Gold image indicators with glow */}
@@ -497,8 +473,8 @@ export default function Hero() {
                   <motion.button
                     key={i}
                     onClick={() => setCurrentImage(i)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      i === currentImage ? "w-8" : "w-2"
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      i === currentImage ? "w-8" : "w-1.5"
                     }`}
                     style={{
                       backgroundColor: i === currentImage ? '#D4AF37' : 'rgba(212, 175, 55, 0.3)'

@@ -11,8 +11,11 @@ import Dashboard from "./components/Dashboard";
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
 import AdminDashboard from "./components/AdminDashboard";
-import Gallery from "./components/Gallery";
+
 import NominationSuccess from "./components/NominationSuccess";
+import About from "./pages/About";
+import Gallery from "./pages/Gallery";
+
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -27,6 +30,8 @@ const App = () => (
           <Route path="*" element={<NotFound />} />
           <Route path="/nominate" element={<NominationForm/>}/>
           <Route path="/login" element={<Login/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/gallery" element={<Gallery/>}/>
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/forgot-password" element={<ForgotPassword/>}/>
           <Route path="/reset-password" element={<ResetPassword/>}/>
