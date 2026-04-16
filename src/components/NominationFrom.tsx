@@ -116,16 +116,25 @@ const NominationForm: React.FC = () => {
         
         try {
             const formDataToSend = new FormData();
-            (Object.keys(formData) as Array<keyof FormData>).forEach(key => {
-                const value = formData[key];
-                if (value !== null && value !== '') {
-                    if (key === 'photo' && value instanceof File) {
-                        formDataToSend.append(key, value);
-                    } else if (typeof value === 'string') {
-                        formDataToSend.append(key, value);
-                    }
-                }
-            });
+
+            // ✅ Correct mapping (VERY IMPORTANT)
+            formDataToSend.append("full_name", formData.fullName);
+            formDataToSend.append("email", formData.email);
+            formDataToSend.append("mobile", formData.mobile);
+            formDataToSend.append("gender", formData.gender);
+            formDataToSend.append("college", formData.college);
+            formDataToSend.append("designation", formData.designation);
+            formDataToSend.append("experience_years", formData.experienceYears);
+            formDataToSend.append("address", formData.address);
+            formDataToSend.append("linkedin_profile", formData.linkedinProfile);
+
+            // ✅ Phase 1 default category (no UI needed)
+            formDataToSend.append("category", "Phase1");
+
+            // ✅ File
+            if (formData.photo) {
+                formDataToSend.append("photo", formData.photo);
+            }
 
             const response = await axios.post<{ success: boolean; data: SuccessResponse }>(
                 '/api/nominations/submit',
