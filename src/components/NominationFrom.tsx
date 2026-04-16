@@ -136,15 +136,11 @@ const NominationForm: React.FC = () => {
                 formDataToSend.append("photo", formData.photo);
             }
 
-            const response = await axios.post<{ success: boolean; data: SuccessResponse }>(
-                '/api/nominations/submit',
-                formDataToSend,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data'
-                    }
-                }
-            );
+            
+           const response = await axios.post(
+  '/api/nominations/submit',
+  formDataToSend
+);
             setSuccess(response.data.data);
             setStep(2);
             
