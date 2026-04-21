@@ -74,13 +74,11 @@ const NominationForm = () => {
     try {
       setLoading(true);
       setMessage("");
+const data = {
+  ...formData
+};
 
-      const data = new FormData();
-      Object.keys(formData).forEach((key) => {
-        data.append(key, formData[key]);
-      });
-
-      await submitNomination(data);
+await submitNomination(data);
 
       setSubmitted(true);
     } catch (err) {
