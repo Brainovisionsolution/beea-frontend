@@ -345,7 +345,7 @@ const NominationForm = () => {
         <h1 style={styles.title}>
           BHARAT EDUCATION <span style={styles.goldAccent}>EXCELLENCE AWARDS</span>
         </h1>
-        <p style={styles.subtitle}>Nomination Form 2025-26</p>
+        <p style={styles.subtitle}>Nomination Form 2026</p>
       </div>
 
       <div style={styles.formCard}>
