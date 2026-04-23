@@ -197,24 +197,7 @@ export default function CTA() {
               ></div>
             </motion.button>
             
-            {/* Secondary Button - Gold Border */}
-            <motion.button 
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative px-10 py-4 font-heading text-base font-bold rounded-full overflow-hidden"
-              style={{ 
-                background: 'transparent',
-                color: '#D4AF37',
-                fontFamily: 'Playfair Display, serif',
-                border: '1px solid #D4AF37'
-              }}
-            >
-              <span className="relative z-10">Download Brochure</span>
-              <div 
-                className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#F5E6C4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
-                style={{ opacity: 0.1 }}
-              ></div>
-            </motion.button>
+            
           </motion.div>
 
           {/* Trust Indicators - Premium Cards */}
@@ -319,7 +302,7 @@ export default function CTA() {
               className="font-body text-sm tracking-wide"
               style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}
             >
-              Nominations close in <span style={{ color: '#D4AF37', fontWeight: 600 }}>15 days</span>
+              Nominations close in <span style={{ color: '#D4AF37', fontWeight: 600 }}>30 days</span>
             </span>
 
             <div className="h-4 w-px" style={{ background: 'rgba(212, 175, 55, 0.2)' }}></div>

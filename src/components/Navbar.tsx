@@ -19,12 +19,8 @@ export default function Navbar() {
     { name: "Home", href: "#" },
     { 
       name: "About", 
-      href: "#about",
-      dropdown: [
-        { name: "Our Mission", href: "#mission" },
-        { name: "Our Vision", href: "#vision" },
-        { name: "History", href: "#history" },
-      ]
+      href: "/about",
+    
     },
     {name : "Gallery",href: "/gallery"},
     { name: "Categories", href: "#categories" },

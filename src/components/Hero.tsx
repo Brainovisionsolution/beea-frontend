@@ -152,7 +152,7 @@ export default function Hero() {
               className="flex flex-wrap items-center gap-4 pt-2"
             >
               <motion.a
-                href="#nominate"
+                href="/nominate"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative inline-flex items-center gap-2 px-8 py-4 font-heading font-semibold text-sm tracking-wide rounded-full overflow-hidden group"

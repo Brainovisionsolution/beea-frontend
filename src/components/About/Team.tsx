@@ -4,6 +4,7 @@ interface TeamMember {
   id: number;
   name: string;
   role: string;
+  description: string;
   image: string;
   socialLinks?: {
     linkedin?: string;
@@ -16,133 +17,132 @@ export default function Team(): JSX.Element {
   const teamMembers: TeamMember[] = [
     {
       id: 1,
-      name: 'Dr. Ananya Sharma',
-      role: 'Founder & Chairperson',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Dr.+Ananya',
+      name: 'Ganesh Nagu Dodi',
+      role: 'Founder & CEO',
+      description: 'Visionary founder driving innovation and excellence across all company verticals with a focus on empowering learners and fostering growth.',
+      image: '/logos/ganesh.png',
       highlight: true,
-      socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-      },
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 2,
-      name: 'Vikram Mehta',
-      role: 'Chief Operating Officer',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Vikram',
-      socialLinks: {
-        linkedin: '#',
-      },
+      name: 'N.N.Swamy',
+      role: 'Director of Operations',
+      description: 'Leading the operational and strategic roadmap with over a decade of experience in managing large-scale education and tech operations.',
+      image: '/logos/swamy.png',
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 3,
-      name: 'Priya Nair',
-      role: 'Head of Jury Relations',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Priya',
-      socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-      },
+      name: 'Kandregula V S S V P Krishna Murthy',
+      role: 'Director - Innovations',
+      description: 'Drives research, innovation, and creative strategy for building next-gen learning and tech solutions.',
+      image: '/logos/Krishna.png',
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 4,
-      name: 'Arjun Reddy',
-      role: 'Director of Nominations',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Arjun',
-      socialLinks: {
-        linkedin: '#',
-      },
+      name: 'Mouna Sri',
+      role: 'Client Relationship Manager',
+      description: 'Building strong relationships with clients, ensuring satisfaction and long-term partnerships with a focus on service excellence.',
+      image: '/logos/mouna.jpg',
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 5,
-      name: 'Meera Kapoor',
-      role: 'Head of Events & Ceremonies',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Meera',
-      highlight: true,
-      socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-      },
+      name: 'Madhu Kumar Vundavalli',
+      role: 'Java Lead Trainer',
+      description: 'Expert Java trainer with hands-on industry experience, mentoring hundreds of students in enterprise-level software development.',
+      image: '/logos/madhu.jpg',
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 6,
-      name: 'Rohan Desai',
-      role: 'Technology Lead',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Rohan',
-      socialLinks: {
-        linkedin: '#',
-      },
+      name: 'Sai Pavan Velidandla',
+      role: 'Chief, Technology',
+      description: 'Leading the technology strategy and product development with a passion for creating scalable and innovative solutions.',
+      image: '/logos/pava1jpg',
+      highlight: true,
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 7,
-      name: 'Neha Gupta',
-      role: 'Head of Marketing',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Neha',
-      socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-      },
+      name: 'Obul',
+      role: 'Software Developer & Trainer',
+      description: 'Full-stack developer and trainer mentoring young minds in modern technologies with hands-on real-world projects.',
+      image: '/logos/obul.png',
+      socialLinks: { linkedin: '#' }
     },
-    {
-      id: 8,
-      name: 'Aditya Singh',
-      role: 'Creative Director',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Aditya',
-      socialLinks: {
-        linkedin: '#',
-      },
-    },
+   
     {
       id: 9,
-      name: 'Kavya Iyer',
-      role: 'Head of Partnerships',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Kavya',
-      highlight: true,
-      socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-      },
+      name: 'Praneeth Babu Yeddula',
+      role: 'Software Engineer & Technical Program Lead',
+      description: 'Leading software development and managing technical programs with a passion for excellence and scalable architecture.',
+      image: '/logos/meeeee.png',
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 10,
-      name: 'Rahul Khanna',
-      role: 'Finance Director',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Rahul',
-      socialLinks: {
-        linkedin: '#',
-      },
+      name: 'Tejaswi Polamarasetti',
+      role: 'Academic Relations Manager',
+      description: 'Building strong collaborations with academic institutions and ensuring effective learning partnerships that drive student success.',
+      image: '/logos/teja.jpg',
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 11,
-      name: 'Sneha Patil',
-      role: 'Head of Research',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Sneha',
-      socialLinks: {
-        linkedin: '#',
-        twitter: '#',
-      },
+      name: 'B. Jaya Chandra',
+      role: 'Academic Partnership Executive & Operational Manager',
+      description: 'Oversees partnerships, operations, and academic collaborations to enhance our educational impact across the nation.',
+      image: '/logos/Jayse.jpg',
+      socialLinks: { linkedin: '#' }
     },
     {
       id: 12,
-      name: 'Amit Joshi',
-      role: 'Community Manager',
-      image: 'https://placehold.co/600x700/F5F5F0/D4AF37?text=Amit',
-      socialLinks: {
-        linkedin: '#',
-      },
+      name: 'Bharath Doddi',
+      role: 'Technical Mentor',
+      description: 'Mentoring teams on emerging technologies and providing strategic technical guidance to ensure project success.',
+      image: '/images/team/bharath-doddi.jpg',
+      socialLinks: { linkedin: '#' }
     },
+    {
+      id: 13,
+      name: 'Bhuvan Teja Buddha',
+      role: 'Technical Mentor',
+      description: 'Committed to nurturing future tech leaders by delivering high-quality mentorship and practical insights.',
+      image: '/logos/Bhuvan.png',
+      socialLinks: { linkedin: '#' }
+    },
+   
+    {
+      id: 15,
+      name: 'Siva',
+      role: 'Technical Mentor',
+      description: 'Guiding students through advanced development concepts, ensuring technical excellence and career growth.',
+      image: '/logos/siva.jpg',
+      socialLinks: { linkedin: '#' }
+    }
   ];
 
   return (
     <section
       className="relative py-16 md:py-24 overflow-hidden"
-      style={{ backgroundColor: '#FFFFFF' }}
+      style={{ backgroundColor: '#0B1C2D' }}
     >
+      {/* Dark Navy Gradient Overlay */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: 'radial-gradient(circle at 20% 30%, #0E2A47 0%, #071421 100%)'
+        }}
+      />
+
       {/* Gold Decorative Elements */}
       <div className="absolute top-20 right-10 w-40 h-40 rounded-full blur-3xl opacity-10" style={{ background: '#D4AF37' }} />
       <div className="absolute bottom-20 left-10 w-56 h-56 rounded-full blur-3xl opacity-10" style={{ background: '#D4AF37' }} />
       
-      {/* Gold Lines Pattern */}
+      {/* Gold Geometric Pattern Background */}
       <div className="absolute inset-0 pointer-events-none opacity-5">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -153,6 +153,26 @@ export default function Team(): JSX.Element {
           <rect width="100%" height="100%" fill="url(#goldGrid)" />
         </svg>
       </div>
+
+      {/* Floating Gold Dust Particles */}
+      <motion.div
+        className="absolute top-1/4 left-1/3 w-1 h-1 rounded-full"
+        style={{ backgroundColor: '#D4AF37', opacity: 0.4 }}
+        animate={{ y: [0, -15, 0], opacity: [0.4, 0.8, 0.4] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute top-2/3 right-1/4 w-1.5 h-1.5 rounded-full"
+        style={{ backgroundColor: '#F5E6C4', opacity: 0.3 }}
+        animate={{ y: [0, 12, 0], opacity: [0.3, 0.7, 0.3] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 left-1/5 w-1 h-1 rounded-full"
+        style={{ backgroundColor: '#D4AF37', opacity: 0.35 }}
+        animate={{ y: [0, -10, 0], opacity: [0.35, 0.7, 0.35] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
@@ -169,7 +189,7 @@ export default function Team(): JSX.Element {
               style={{
                 color: '#D4AF37',
                 background: 'rgba(212, 175, 55, 0.08)',
-                border: '1px solid rgba(212, 175, 55, 0.2)',
+                border: '1px solid rgba(212, 175, 55, 0.25)',
               }}
             >
               MEET THE MINDS
@@ -179,10 +199,10 @@ export default function Team(): JSX.Element {
 
           <h2
             className="font-heading text-3xl md:text-5xl lg:text-6xl font-bold mb-4"
-            style={{ color: '#0B1C2D' }}
+            style={{ color: '#F5E6C4' }}
           >
             Our{' '}
-            <span className="bg-gradient-to-r from-[#B8860B] via-[#D4AF37] to-[#F5A623] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#D4AF37] via-[#F5E6C4] to-[#D4AF37] bg-clip-text text-transparent">
               Leadership
             </span>
           </h2>
@@ -193,20 +213,20 @@ export default function Team(): JSX.Element {
             transition={{ duration: 0.8 }}
             className="w-20 md:w-28 h-0.5 mx-auto mb-4"
             style={{
-              background: 'linear-gradient(90deg, transparent, #D4AF37, #F5A623, #D4AF37, transparent)',
+              background: 'linear-gradient(90deg, transparent, #D4AF37, #F5E6C4, #D4AF37, transparent)',
             }}
           />
           
           <p
             className="font-body text-sm md:text-base max-w-2xl mx-auto mt-4"
-            style={{ color: '#4A5568' }}
+            style={{ color: '#A0AEC0' }}
           >
-            Visionaries driving excellence in education recognition across India
+            Visionaries driving excellence in education and technology across India
           </p>
           
           <p
             className="font-body text-xs mt-3"
-            style={{ color: '#D4AF37' }}
+            style={{ color: '#D4AF37', opacity: 0.8 }}
           >
             {teamMembers.length} dedicated professionals leading the way
           </p>
@@ -219,66 +239,67 @@ export default function Team(): JSX.Element {
               key={member.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: Math.min(index * 0.05, 0.5) }}
+              transition={{ duration: 0.5, delay: Math.min(index * 0.03, 0.5) }}
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
-              className={`group relative rounded-2xl overflow-hidden transition-all duration-300 ${
-                member.highlight ? 'ring-2 ring-[#D4AF37] shadow-xl' : 'shadow-lg hover:shadow-2xl'
+              className={`group relative rounded-2xl overflow-hidden transition-all duration-300 backdrop-blur-sm ${
+                member.highlight ? 'ring-2 ring-[#D4AF37] shadow-xl shadow-[#D4AF37]/20' : 'hover:shadow-2xl'
               }`}
               style={{
-                background: '#FFFFFF',
+                background: 'rgba(255, 255, 255, 0.03)',
                 border: `1px solid ${member.highlight ? '#D4AF37' : 'rgba(212, 175, 55, 0.2)'}`,
               }}
             >
-              {/* Image Container */}
-              <div className="relative h-64 md:h-72 overflow-hidden bg-[#F9F9F5]">
+              {/* Image Container with Fallback */}
+              <div className="relative h-56 md:h-64 overflow-hidden bg-gradient-to-br from-[#0E2A47] to-[#071421]">
                 <img
                   src={member.image}
                   alt={member.name}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      const fallback = document.createElement('div');
+                      fallback.className = 'w-full h-full flex items-center justify-center';
+                      fallback.innerHTML = `
+                        <div class="text-center">
+                          <div class="w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mx-auto mb-3" style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05)); border: 2px solid rgba(212, 175, 55, 0.3);">
+                            <span class="font-heading text-2xl md:text-3xl font-bold" style="color: #D4AF37;">${member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</span>
+                          </div>
+                          <div class="w-12 h-px mx-auto" style="background-color: rgba(212, 175, 55, 0.3);"></div>
+                        </div>
+                      `;
+                      parent.appendChild(fallback);
+                    }
+                  }}
                 />
                 
-                {/* Gold Gradient Overlay */}
+                {/* Gold Gradient Overlay on Hover */}
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
                   style={{
-                    background: 'linear-gradient(135deg, #D4AF37, #F5A623)',
+                    background: 'linear-gradient(135deg, #D4AF37, #F5E6C4)',
                   }}
                 />
                 
                 {/* Social Links Overlay */}
                 {member.socialLinks && (
                   <div className="absolute bottom-3 left-0 right-0 flex justify-center gap-3 z-10 translate-y-10 group-hover:translate-y-0 transition-transform duration-300">
-                    {member.socialLinks.linkedin && (
-                      <a
-                        href={member.socialLinks.linkedin}
-                        className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                        style={{
-                          background: '#FFFFFF',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                          border: '1px solid rgba(212, 175, 55, 0.3)',
-                        }}
-                      >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style={{ color: '#D4AF37' }}>
-                          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                      </a>
-                    )}
-                    {member.socialLinks.twitter && (
-                      <a
-                        href={member.socialLinks.twitter}
-                        className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
-                        style={{
-                          background: '#FFFFFF',
-                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                          border: '1px solid rgba(212, 175, 55, 0.3)',
-                        }}
-                      >
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style={{ color: '#D4AF37' }}>
-                          <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.104c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 0021.68-11.79c0-.213-.005-.425-.015-.636A10.012 10.012 0 0024 4.557z"/>
-                        </svg>
-                      </a>
-                    )}
+                    <a
+                      href={member.socialLinks.linkedin}
+                      className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg"
+                      style={{
+                        background: '#0B1C2D',
+                        boxShadow: '0 2px 8px rgba(0,0,0,0.2)',
+                        border: '1px solid rgba(212, 175, 55, 0.4)',
+                      }}
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" style={{ color: '#D4AF37' }}>
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                      </svg>
+                    </a>
                   </div>
                 )}
               </div>
@@ -286,17 +307,36 @@ export default function Team(): JSX.Element {
               {/* Content */}
               <div className="p-5 text-center">
                 <h3
-                  className="font-heading text-lg md:text-xl font-bold mb-1 transition-colors duration-300 group-hover:text-[#D4AF37]"
-                  style={{ color: '#0B1C2D' }}
+                  className="font-heading text-base md:text-lg font-bold mb-1 transition-colors duration-300 group-hover:text-[#D4AF37] line-clamp-2"
+                  style={{ color: '#F5E6C4' }}
                 >
                   {member.name}
                 </h3>
                 <p
-                  className="font-body text-xs uppercase tracking-wider"
+                  className="font-body text-xs uppercase tracking-wider mb-2"
                   style={{ color: '#D4AF37' }}
                 >
                   {member.role}
                 </p>
+                <p
+                  className="font-body text-xs leading-relaxed line-clamp-3"
+                  style={{ color: '#A0AEC0' }}
+                >
+                  {member.description}
+                </p>
+              </div>
+
+              {/* View Profile Link */}
+              <div className="pb-4 text-center">
+                <button
+                  className="font-body text-xs font-medium transition-all duration-300 hover:tracking-wider inline-flex items-center gap-1"
+                  style={{ color: '#D4AF37' }}
+                >
+                  View Profile
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
               </div>
 
               {/* Number Indicator */}
@@ -310,13 +350,13 @@ export default function Team(): JSX.Element {
               {/* Highlight Badge */}
               {member.highlight && (
                 <div
-                  className="absolute top-3 right-3 z-10 px-2 py-1 rounded-full text-[10px] font-bold"
+                  className="absolute top-3 right-3 z-10 px-2 py-1 rounded-full text-[10px] font-bold flex items-center gap-1"
                   style={{
-                    background: '#D4AF37',
-                    color: '#FFFFFF',
+                    background: 'linear-gradient(135deg, #D4AF37, #B8860B)',
+                    color: '#0B1C2D',
                   }}
                 >
-                  ✦ Lead
+                  <span>✦</span> Lead
                 </div>
               )}
             </motion.div>
@@ -333,18 +373,19 @@ export default function Team(): JSX.Element {
           <div
             className="inline-flex flex-col sm:flex-row items-center gap-4 px-6 md:px-8 py-5 md:py-6 rounded-2xl"
             style={{
-              background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.05), rgba(212, 175, 55, 0.02))',
+              background: 'rgba(212, 175, 55, 0.03)',
               border: '1px solid rgba(212, 175, 55, 0.2)',
+              backdropFilter: 'blur(4px)',
             }}
           >
-            <span className="font-body text-sm md:text-base" style={{ color: '#4A5568' }}>
+            <span className="font-body text-sm md:text-base" style={{ color: '#A0AEC0' }}>
               Want to join our mission?
             </span>
             <button
               className="px-6 md:px-8 py-2.5 md:py-3 font-heading font-semibold text-sm rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl"
               style={{
                 background: 'linear-gradient(135deg, #D4AF37, #B8860B)',
-                color: '#FFFFFF',
+                color: '#0B1C2D',
                 boxShadow: '0 4px 15px rgba(212, 175, 55, 0.3)',
               }}
             >
@@ -354,18 +395,16 @@ export default function Team(): JSX.Element {
         </motion.div>
 
         {/* Footer Gold Line */}
-        <div
-          className="mt-12 pt-6 text-center"
-        >
+        <div className="mt-12 pt-6 text-center">
           <div
             className="w-16 h-px mx-auto mb-3"
             style={{ background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)' }}
           />
           <p
             className="font-body text-xs"
-            style={{ color: '#A0AEC0' }}
+            style={{ color: '#4A5568' }}
           >
-            Committed to excellence in education recognition
+            Committed to excellence in education and technology
           </p>
         </div>
       </div>
@@ -377,6 +416,20 @@ export default function Team(): JSX.Element {
         
         .font-body {
           font-family: 'Poppins', sans-serif;
+        }
+        
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
         
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap');

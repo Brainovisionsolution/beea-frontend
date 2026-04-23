@@ -376,7 +376,7 @@ export default function WhyNominate() {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 fontFamily: 'Playfair Display, serif' 
-              }}>500+</div>
+              }}>2000+</div>
               <div className="font-body text-sm" style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}>Awards Presented</div>
             </div>
             <div className="text-center">
@@ -386,7 +386,7 @@ export default function WhyNominate() {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 fontFamily: 'Playfair Display, serif' 
-              }}>200+</div>
+              }}>500+</div>
               <div className="font-body text-sm" style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}>Institutions</div>
             </div>
             <div className="text-center">
@@ -406,60 +406,13 @@ export default function WhyNominate() {
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
                 fontFamily: 'Playfair Display, serif' 
-              }}>1000+</div>
+              }}>10000+</div>
               <div className="font-body text-sm" style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}>Network Members</div>
             </div>
           </div>
         </motion.div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center rounded-2xl p-12"
-          style={{
-            background: 'linear-gradient(135deg, rgba(212,175,55,0.05) 0%, rgba(13,27,42,0.2) 100%)',
-            border: '1px solid rgba(212, 175, 55, 0.15)'
-          }}
-        >
-          <h3 
-            className="font-heading text-3xl font-bold mb-4"
-            style={{ color: '#FFFFFF', fontFamily: 'Playfair Display, serif' }}
-          >
-            Ready to Begin Your Journey?
-          </h3>
-          <p 
-            className="font-body mb-8 max-w-2xl mx-auto"
-            style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}
-          >
-            Join hundreds of educators and institutions who have already taken the step toward recognition.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              className="px-8 py-4 font-heading font-semibold rounded-lg transition-all duration-300 hover:scale-105"
-              style={{ 
-                background: '#D4AF37',
-                color: '#0A1628',
-                fontFamily: 'Playfair Display, serif',
-                boxShadow: '0 4px 15px rgba(212, 175, 55, 0.2)'
-              }}
-            >
-              Submit Nomination
-            </button>
-            <button 
-              className="px-8 py-4 font-heading font-semibold rounded-lg transition-all duration-300 hover:scale-105"
-              style={{ 
-                background: 'transparent',
-                color: '#D4AF37',
-                fontFamily: 'Playfair Display, serif',
-                border: '1px solid #D4AF37'
-              }}
-            >
-              Download Brochure
-            </button>
-          </div>
-        </motion.div>
+        
 
         {/* Trust Indicators */}
         <motion.div 

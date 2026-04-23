@@ -4,108 +4,115 @@ export default function Herosection(): JSX.Element {
   return (
     <section
       className="relative pt-24 md:pt-32 pb-16 md:pb-24 overflow-hidden"
-      style={{ backgroundColor: '#0B1C2D' }}
+      style={{ backgroundColor: '#0D1117' }}
     >
-      {/* Deep Navy Gradient Overlay */}
+      {/* Dark Charcoal to Deep Slate Gradient Overlay */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(135deg, #0E2A47 0%, #071421 100%)'
+          background: 'radial-gradient(circle at 20% 30%, #111827 0%, #030712 100%)'
         }}
       />
 
-      {/* Luxury Gold Decorative Elements */}
-      {/* Top Left - Gold Geometric Pattern */}
+      {/* Premium Metallic Accents - Copper & Gold Elements */}
+      {/* Top Left - Angled Metal Panels */}
       <div className="hidden md:block absolute top-10 left-10">
-        <div className="w-20 h-20 rotate-12" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)' }} />
-        <div className="w-14 h-14 -rotate-6 -mt-10 ml-10" style={{ backgroundColor: 'rgba(245, 230, 196, 0.08)' }} />
-        <div className="w-8 h-8 rotate-45 -mt-6 ml-16" style={{ backgroundColor: 'rgba(212, 175, 55, 0.12)' }} />
+        <div className="w-24 h-24 rotate-12" style={{ backgroundColor: 'rgba(212, 175, 55, 0.06)' }} />
+        <div className="w-16 h-16 -rotate-6 -mt-10 ml-12" style={{ backgroundColor: 'rgba(180, 83, 9, 0.06)' }} />
+        <div className="w-10 h-10 rotate-45 -mt-6 ml-20" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }} />
       </div>
 
-      {/* Top Right - Gold Circles */}
+      {/* Top Right - Glowing Metallic Rings */}
       <div className="hidden md:block absolute top-20 right-20">
-        <div className="w-32 h-32 rounded-full" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)' }} />
-        <div className="w-20 h-20 rounded-full -mt-16 mr-12" style={{ backgroundColor: 'rgba(245, 230, 196, 0.06)' }} />
-        <div className="w-10 h-10 rounded-full -mt-6 mr-24" style={{ backgroundColor: 'rgba(212, 175, 55, 0.1)' }} />
+        <div className="w-40 h-40 rounded-full" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)', boxShadow: '0 0 20px rgba(212, 175, 55, 0.1)' }} />
+        <div className="w-24 h-24 rounded-full -mt-20 mr-12" style={{ backgroundColor: 'rgba(180, 83, 9, 0.04)' }} />
+        <div className="w-12 h-12 rounded-full -mt-8 mr-28" style={{ backgroundColor: 'rgba(212, 175, 55, 0.08)' }} />
       </div>
 
-      {/* Bottom Left - Gold Curved Lines */}
+      {/* Bottom Left - Geometric Lines with Copper */}
       <div className="hidden md:block absolute bottom-20 left-20">
-        <svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+        <svg width="160" height="160" viewBox="0 0 160 160" fill="none">
           <path
-            d="M15 125 Q 50 80, 85 80 T 125 40"
+            d="M20 140 Q 60 90, 100 90 T 140 40"
+            stroke="url(#copperGradient)"
+            strokeWidth="2.5"
+            strokeOpacity="0.3"
+            fill="none"
+            strokeLinecap="round"
+          />
+          <path
+            d="M30 120 Q 70 70, 110 70 T 130 30"
             stroke="#D4AF37"
             strokeWidth="2"
-            strokeOpacity="0.2"
+            strokeOpacity="0.15"
             fill="none"
             strokeLinecap="round"
           />
-          <path
-            d="M25 105 Q 60 60, 95 60 T 115 30"
-            stroke="#F5E6C4"
-            strokeWidth="2"
-            strokeOpacity="0.12"
-            fill="none"
-            strokeLinecap="round"
-          />
-          <circle cx="85" cy="80" r="4" fill="#D4AF37" fillOpacity="0.2" />
-          <circle cx="95" cy="60" r="3" fill="#F5E6C4" fillOpacity="0.15" />
-          <circle cx="115" cy="30" r="2" fill="#D4AF37" fillOpacity="0.25" />
+          <circle cx="100" cy="90" r="5" fill="#D4AF37" fillOpacity="0.25" />
+          <circle cx="110" cy="70" r="4" fill="#B45309" fillOpacity="0.2" />
+          <circle cx="130" cy="30" r="3" fill="#D4AF37" fillOpacity="0.3" />
+          <defs>
+            <linearGradient id="copperGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#D4AF37" />
+              <stop offset="100%" stopColor="#B45309" />
+            </linearGradient>
+          </defs>
         </svg>
       </div>
 
-      {/* Bottom Right - Gold Mixed Shapes */}
+      {/* Bottom Right - Mixed Shapes with Warm Accents */}
       <div className="hidden md:block absolute bottom-32 right-32">
-        <div className="w-24 h-24 rounded-full border-4" style={{ borderColor: 'rgba(212, 175, 55, 0.15)' }} />
-        <div className="w-14 h-14 rotate-45 -mt-12 ml-12 border-4" style={{ borderColor: 'rgba(245, 230, 196, 0.12)' }} />
-        <div className="w-8 h-8 rounded-full -mt-8 ml-20" style={{ backgroundColor: 'rgba(212, 175, 55, 0.15)' }} />
+        <div className="w-28 h-28 rounded-full border-4" style={{ borderColor: 'rgba(212, 175, 55, 0.12)' }} />
+        <div className="w-16 h-16 rotate-45 -mt-14 ml-14 border-4" style={{ borderColor: 'rgba(180, 83, 9, 0.1)' }} />
+        <div className="w-10 h-10 rounded-full -mt-9 ml-24" style={{ backgroundColor: 'rgba(212, 175, 55, 0.12)' }} />
       </div>
 
-      {/* Center - Large Gold Rings */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] md:w-[700px] h-[400px] md:h-[700px]">
-        <div className="absolute inset-0 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.1)' }} />
-        <div className="absolute inset-12 md:inset-20 rounded-full border-2" style={{ borderColor: 'rgba(245, 230, 196, 0.08)' }} />
-        <div className="absolute inset-24 md:inset-40 rounded-full border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.05)' }} />
+      {/* Center - Large Premium Rings with Glow Effect */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[800px] h-[500px] md:h-[800px]">
+        <div className="absolute inset-0 rounded-full border" style={{ borderColor: 'rgba(212, 175, 55, 0.08)', boxShadow: '0 0 30px rgba(212, 175, 55, 0.05)' }} />
+        <div className="absolute inset-16 md:inset-24 rounded-full border" style={{ borderColor: 'rgba(180, 83, 9, 0.06)' }} />
+        <div className="absolute inset-32 md:inset-48 rounded-full border" style={{ borderColor: 'rgba(212, 175, 55, 0.04)' }} />
+        <div className="absolute inset-48 md:inset-72 rounded-full border border-dashed" style={{ borderColor: 'rgba(212, 175, 55, 0.03)' }} />
       </div>
 
-      {/* Floating Gold Dust Particles */}
+      {/* Floating Dust Particles - Copper & Gold */}
       <motion.div
         className="absolute top-1/4 left-1/3 w-1 h-1 rounded-full"
-        style={{ backgroundColor: '#D4AF37', opacity: 0.4 }}
-        animate={{ y: [0, -15, 0], opacity: [0.4, 0.8, 0.4] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        style={{ backgroundColor: '#D4AF37', opacity: 0.5, boxShadow: '0 0 4px #D4AF37' }}
+        animate={{ y: [0, -18, 0], opacity: [0.5, 1, 0.5] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute top-2/3 right-1/4 w-1.5 h-1.5 rounded-full"
-        style={{ backgroundColor: '#F5E6C4', opacity: 0.3 }}
-        animate={{ y: [0, 12, 0], opacity: [0.3, 0.7, 0.3] }}
+        className="absolute top-2/3 right-1/4 w-2 h-2 rounded-full"
+        style={{ backgroundColor: '#B45309', opacity: 0.4, boxShadow: '0 0 6px #B45309' }}
+        animate={{ y: [0, 15, 0], opacity: [0.4, 0.9, 0.4] }}
         transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
       />
       <motion.div
-        className="absolute bottom-1/3 left-1/5 w-1 h-1 rounded-full"
-        style={{ backgroundColor: '#D4AF37', opacity: 0.35 }}
-        animate={{ y: [0, -10, 0], opacity: [0.35, 0.7, 0.35] }}
-        transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+        className="absolute bottom-1/3 left-1/5 w-1.5 h-1.5 rounded-full"
+        style={{ backgroundColor: '#F59E0B', opacity: 0.45, boxShadow: '0 0 5px #F59E0B' }}
+        animate={{ y: [0, -12, 0], opacity: [0.45, 0.85, 0.45] }}
+        transition={{ duration: 4.8, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
       />
       <motion.div
-        className="absolute top-1/2 right-1/3 w-2 h-2 rounded-full"
-        style={{ backgroundColor: '#F9E7B3', opacity: 0.25 }}
-        animate={{ y: [0, 8, 0], opacity: [0.25, 0.6, 0.25] }}
-        transition={{ duration: 3.8, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
+        className="absolute top-1/2 right-1/3 w-2.5 h-2.5 rounded-full"
+        style={{ backgroundColor: '#D4AF37', opacity: 0.35, boxShadow: '0 0 8px #D4AF37' }}
+        animate={{ y: [0, 10, 0], opacity: [0.35, 0.8, 0.35] }}
+        transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut', delay: 0.8 }}
       />
 
-      {/* Floating Gold Circles - Animated */}
+      {/* Floating Animated Premium Elements */}
       <motion.div
-        className="absolute top-1/4 right-1/5 w-3 md:w-4 h-3 md:h-4 rounded-full"
-        style={{ backgroundColor: '#D4AF37', opacity: 0.2 }}
-        animate={{ y: [0, -20, 0], x: [0, 5, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+        className="absolute top-1/4 right-1/5 w-4 md:w-5 h-4 md:h-5 rounded-full"
+        style={{ backgroundColor: '#D4AF37', opacity: 0.15, boxShadow: '0 0 12px #D4AF37' }}
+        animate={{ y: [0, -25, 0], x: [0, 8, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
-        className="absolute bottom-1/4 left-1/4 w-2 md:w-3 h-2 md:h-3 rounded-full"
-        style={{ backgroundColor: '#F5E6C4', opacity: 0.18 }}
-        animate={{ y: [0, 15, 0], x: [0, -3, 0] }}
-        transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
+        className="absolute bottom-1/4 left-1/4 w-3 md:w-4 h-3 md:h-4 rounded-full"
+        style={{ backgroundColor: '#B45309', opacity: 0.12, boxShadow: '0 0 10px #B45309' }}
+        animate={{ y: [0, 20, 0], x: [0, -5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut', delay: 0.3 }}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -116,63 +123,67 @@ export default function Herosection(): JSX.Element {
           transition={{ duration: 0.5 }}
           className="flex items-center justify-center gap-2 mb-6 md:mb-8"
         >
-          <span className="text-xs md:text-sm font-body" style={{ color: '#F5E6C4', opacity: 0.6 }}>
+          <span className="text-xs md:text-sm font-body" style={{ color: '#9CA3AF' }}>
             Home
           </span>
-          <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#D4AF37', opacity: 0.5 }}>
+          <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#D4AF37', opacity: 0.6 }}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
-          <span className="text-xs md:text-sm font-body" style={{ color: '#D4AF37' }}>
+          <span className="text-xs md:text-sm font-body" style={{ color: '#D4AF37', fontWeight: 500 }}>
             About Us
           </span>
         </motion.div>
 
         {/* Main Hero Content */}
         <div className="text-center">
-          {/* Gold Accent Badge */}
+          {/* Premium Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             className="flex items-center justify-center gap-2 md:gap-3 mb-4 md:mb-6"
           >
-            <div className="w-8 md:w-12 h-px" style={{ backgroundColor: '#D4AF37', opacity: 0.4 }} />
+            <div className="w-8 md:w-12 h-px" style={{ background: 'linear-gradient(90deg, transparent, #D4AF37, #F59E0B)' }} />
             <span
               className="font-heading text-xs md:text-sm font-semibold tracking-[0.2em] md:tracking-[0.3em] uppercase px-4 md:px-6 py-1.5 md:py-2 rounded-full"
               style={{
                 color: '#D4AF37',
-                background: 'rgba(212, 175, 55, 0.12)',
-                border: '1px solid rgba(212, 175, 55, 0.25)'
+                background: 'rgba(212, 175, 55, 0.08)',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                backdropFilter: 'blur(4px)'
               }}
             >
               OUR LEGACY
             </span>
-            <div className="w-8 md:w-12 h-px" style={{ backgroundColor: '#D4AF37', opacity: 0.4 }} />
+            <div className="w-8 md:w-12 h-px" style={{ background: 'linear-gradient(90deg, #F59E0B, #D4AF37, transparent)' }} />
           </motion.div>
 
-          {/* Main Heading with Gold Gradient */}
+          {/* Main Heading with Copper-Gold Gradient */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.3 }}
             className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-4 md:mb-6 px-4"
           >
-            <span className="bg-gradient-to-r from-[#E8C47E] via-[#D4AF37] to-[#F9E7B3] bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-[#F5E6C4] via-[#D4AF37] to-[#F59E0B] bg-clip-text text-transparent">
               Celebrating Excellence
             </span>
             <br />
-            <span style={{ color: '#F5E6C4' }}>Since 2010</span>
+            <span className="bg-gradient-to-r from-[#E5E7EB] to-[#9CA3AF] bg-clip-text text-transparent">
+              Since 2021
+            </span>
           </motion.h1>
 
-          {/* Decorative Gold Line */}
+          {/* Decorative Metallic Line */}
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="w-20 md:w-28 h-0.5 mx-auto mb-6 md:mb-8"
+            className="w-24 md:w-32 h-0.5 mx-auto mb-6 md:mb-8"
             style={{
-              background: 'linear-gradient(90deg, transparent, #D4AF37, #F9E7B3, #D4AF37, transparent)',
-              transformOrigin: 'center'
+              background: 'linear-gradient(90deg, transparent, #D4AF37, #F59E0B, #D4AF37, transparent)',
+              transformOrigin: 'center',
+              boxShadow: '0 0 6px rgba(212, 175, 55, 0.5)'
             }}
           />
 
@@ -182,13 +193,13 @@ export default function Herosection(): JSX.Element {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
             className="font-body text-sm md:text-base lg:text-lg max-w-3xl mx-auto px-4 leading-relaxed"
-            style={{ color: '#F5E6C4', opacity: 0.85 }}
+            style={{ color: '#D1D5DB' }}
           >
             We are a premier institution dedicated to recognizing and celebrating outstanding achievements in education.
             Our mission is to honor those who shape the future through innovation, dedication, and excellence.
           </motion.p>
 
-          {/* Stats / Key Metrics */}
+          {/* Stats / Key Metrics - Premium Cards */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -196,76 +207,37 @@ export default function Herosection(): JSX.Element {
             className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-3xl mx-auto mt-12 md:mt-16"
           >
             {[
-              { number: '15+', label: 'Award Editions', icon: '🏆' },
-              { number: '500+', label: 'Honored Laureates', icon: '⭐' },
-              { number: '50+', label: 'Expert Jurors', icon: '👥' },
-              { number: 'Pan India', label: 'Nationwide Reach', icon: '🇮🇳' }
+              { number: '15+', label: 'Award Editions', },
+              { number: '500+', label: 'Honored Laureates', },
+              { number: '50+', label: 'Expert Jurors', },
+              { number: 'Pan India', label: 'Nationwide Reach', }
             ].map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.9 + index * 0.1 }}
-                className="text-center p-4 rounded-xl"
+                className="text-center p-4 rounded-xl backdrop-blur-sm group transition-all duration-300 hover:transform hover:-translate-y-1"
                 style={{
-                  background: 'rgba(255, 255, 255, 0.03)',
-                  border: '1px solid rgba(212, 175, 55, 0.15)',
-                  backdropFilter: 'blur(8px)'
+                  background: 'rgba(17, 24, 39, 0.5)',
+                  border: '1px solid rgba(212, 175, 55, 0.2)',
+                  boxShadow: '0 8px 20px rgba(0, 0, 0, 0.2)'
                 }}
               >
-                <div className="text-2xl md:text-3xl mb-1">{stat.icon}</div>
-                <div className="font-heading text-xl md:text-2xl font-bold" style={{ color: '#D4AF37' }}>
+                <div className="text-2xl md:text-3xl mb-1 filter drop-shadow-lg">{stat.icon}</div>
+                <div className="font-heading text-xl md:text-2xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#F59E0B] bg-clip-text text-transparent">
                   {stat.number}
                 </div>
-                <div className="font-body text-xs md:text-sm mt-1" style={{ color: '#F5E6C4', opacity: 0.7 }}>
+                <div className="font-body text-xs md:text-sm mt-1" style={{ color: '#9CA3AF' }}>
                   {stat.label}
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.1 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12 md:mt-16"
-          >
-            <button
-              className="px-8 md:px-10 py-3 md:py-4 font-heading font-semibold text-sm md:text-base rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl group relative overflow-hidden"
-              style={{
-                background: '#D4AF37',
-                color: '#0B1C2D',
-                boxShadow: '0 8px 25px rgba(212, 175, 55, 0.35)'
-              }}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Know Our Story
-                <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </span>
-            </button>
+        
 
-            <button
-              className="px-8 md:px-10 py-3 md:py-4 font-heading font-semibold text-sm md:text-base rounded-xl transition-all duration-300 hover:scale-105 group"
-              style={{
-                background: 'transparent',
-                color: '#F5E6C4',
-                border: '1px solid rgba(212, 175, 55, 0.5)',
-                backdropFilter: 'blur(8px)'
-              }}
-            >
-              <span className="flex items-center gap-2">
-                Meet Our Jury
-                <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-            </button>
-          </motion.div>
-
-          {/* Scroll Indicator */}
+          {/* Scroll Indicator - Premium */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -273,8 +245,8 @@ export default function Herosection(): JSX.Element {
             className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:block"
           >
             <div className="flex flex-col items-center gap-2">
-              <span className="text-xs font-body" style={{ color: '#F5E6C4', opacity: 0.5 }}>
-                Scroll to discover
+              <span className="text-xs font-body tracking-wider" style={{ color: '#9CA3AF' }}>
+                SCROLL TO DISCOVER
               </span>
               <motion.div
                 animate={{ y: [0, 8, 0] }}
@@ -286,7 +258,7 @@ export default function Herosection(): JSX.Element {
                   animate={{ y: [2, 12, 2] }}
                   transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                   className="w-1 h-2 rounded-full mt-1"
-                  style={{ backgroundColor: '#D4AF37' }}
+                  style={{ backgroundColor: '#D4AF37', boxShadow: '0 0 4px #D4AF37' }}
                 />
               </motion.div>
             </div>
@@ -294,11 +266,11 @@ export default function Herosection(): JSX.Element {
         </div>
       </div>
 
-      {/* Gold Gradient Overlay at Bottom */}
+      {/* Gradient Overlay at Bottom */}
       <div
         className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
         style={{
-          background: 'linear-gradient(to top, rgba(11, 28, 45, 0.9), transparent)'
+          background: 'linear-gradient(to top, #030712, transparent)'
         }}
       />
 
