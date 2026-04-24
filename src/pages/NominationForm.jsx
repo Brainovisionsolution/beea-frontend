@@ -433,7 +433,6 @@ await submitNomination(data);
                 <option value="" style={styles.optionStyle}>Select Gender</option>
                 <option style={styles.optionStyle}>Male</option>
                 <option style={styles.optionStyle}>Female</option>
-                <option style={styles.optionStyle}>Other</option>
               </select>
             </div>
 
@@ -447,17 +446,44 @@ await submitNomination(data);
                 autoComplete="off"
               >
                 <option value="" style={styles.optionStyle}>Select State</option>
-                <option style={styles.optionStyle}>Andhra Pradesh</option>
-                <option style={styles.optionStyle}>Telangana</option>
-                <option style={styles.optionStyle}>Tamil Nadu</option>
-                <option style={styles.optionStyle}>Karnataka</option>
-                <option style={styles.optionStyle}>Kerala</option>
-                <option style={styles.optionStyle}>Maharashtra</option>
-                <option style={styles.optionStyle}>Delhi</option>
-                <option style={styles.optionStyle}>Gujarat</option>
-                <option style={styles.optionStyle}>Rajasthan</option>
-                <option style={styles.optionStyle}>Uttar Pradesh</option>
-                <option style={styles.optionStyle}>West Bengal</option>
+
+<option style={styles.optionStyle}>Andhra Pradesh</option>
+<option style={styles.optionStyle}>Arunachal Pradesh</option>
+<option style={styles.optionStyle}>Assam</option>
+<option style={styles.optionStyle}>Bihar</option>
+<option style={styles.optionStyle}>Chhattisgarh</option>
+<option style={styles.optionStyle}>Goa</option>
+<option style={styles.optionStyle}>Gujarat</option>
+<option style={styles.optionStyle}>Haryana</option>
+<option style={styles.optionStyle}>Himachal Pradesh</option>
+<option style={styles.optionStyle}>Jharkhand</option>
+<option style={styles.optionStyle}>Karnataka</option>
+<option style={styles.optionStyle}>Kerala</option>
+<option style={styles.optionStyle}>Madhya Pradesh</option>
+<option style={styles.optionStyle}>Maharashtra</option>
+<option style={styles.optionStyle}>Manipur</option>
+<option style={styles.optionStyle}>Meghalaya</option>
+<option style={styles.optionStyle}>Mizoram</option>
+<option style={styles.optionStyle}>Nagaland</option>
+<option style={styles.optionStyle}>Odisha</option>
+<option style={styles.optionStyle}>Punjab</option>
+<option style={styles.optionStyle}>Rajasthan</option>
+<option style={styles.optionStyle}>Sikkim</option>
+<option style={styles.optionStyle}>Tamil Nadu</option>
+<option style={styles.optionStyle}>Telangana</option>
+<option style={styles.optionStyle}>Tripura</option>
+<option style={styles.optionStyle}>Uttar Pradesh</option>
+<option style={styles.optionStyle}>Uttarakhand</option>
+<option style={styles.optionStyle}>West Bengal</option>
+
+<option style={styles.optionStyle}>Andaman and Nicobar Islands</option>
+<option style={styles.optionStyle}>Chandigarh</option>
+<option style={styles.optionStyle}>Dadra and Nagar Haveli and Daman and Diu</option>
+<option style={styles.optionStyle}>Delhi</option>
+<option style={styles.optionStyle}>Lakshadweep</option>
+<option style={styles.optionStyle}>Puducherry</option>
+<option style={styles.optionStyle}>Ladakh</option>
+<option style={styles.optionStyle}>Jammu and Kashmir</option>
               </select>
             </div>
 
