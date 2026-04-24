@@ -212,6 +212,99 @@ export default function Herosection(): JSX.Element {
           </div>
         </motion.div>
 
+        {/* Years Grid - Enhanced Premium Design */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.25 }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 md:gap-10 mb-16 md:mb-24 max-w-6xl mx-auto"
+        >
+          {[
+            { label: 'Edition 1 Gallery', url: 'https://drive.google.com/drive/folders/1yumGTFkNNTFmfQjxbJ2nKqRlR8WWGaiC?usp=sharing' },
+            { label: 'Edition 2 Gallery', url: 'https://drive.google.com/drive/folders/1Fj3XTPPbgilDEgRQMBN9xgGaPP8PfV1N?usp=sharing' },
+            { label: 'Edition 3 Gallery', url: 'https://drive.google.com/drive/folders/1AeUhZBq8FGwO1DPgL845jVl_iHVZ-UHZ?usp=sharing' },
+            { label: 'Edition 4 Gallery', url: 'https://drive.google.com/drive/folders/1a9wGj3YewE_7Jv46pkKo7zq5pGM71nyW?usp=sharing' },
+            { label: 'Edition 5 Gallery', url: 'https://drive.google.com/drive/folders/15nusWb6lihw_h5JUYsJ2zqQcZ-psTTTo?usp=sharing' }
+          ].map((edition, index) => (
+            <motion.div
+              key={edition.label}
+              whileHover={{ 
+                y: -10,
+                transition: { duration: 0.3 }
+              }}
+              className={`relative p-10 md:p-12 rounded-[2rem] flex flex-col items-center justify-center text-center group cursor-pointer overflow-hidden ${
+                index < 3 ? 'md:col-span-2' : index === 3 ? 'md:col-span-2 md:col-start-2' : 'md:col-span-2'
+              }`}
+              style={{
+                background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(11, 28, 45, 0.4))',
+                border: '1px solid rgba(212, 175, 55, 0.3)',
+                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+                backdropFilter: 'blur(16px)',
+              }}
+            >
+              {/* Animated Shine Effect on Hover */}
+              <motion.div
+                className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out skew-x-12"
+              />
+
+              {/* Decorative Gold Star/Award Icon */}
+              <motion.div 
+                initial={{ opacity: 0.5, scale: 0.8 }}
+                whileHover={{ opacity: 1, scale: 1.2, rotate: 360 }}
+                transition={{ duration: 0.5 }}
+                className="mb-4"
+              >
+                <svg className="w-8 h-8 md:w-10 md:h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#goldGradient)" />
+                  <defs>
+                    <linearGradient id="goldGradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                      <stop stopColor="#E8C47E" />
+                      <stop offset="0.5" stopColor="#D4AF37" />
+                      <stop offset="1" stopColor="#F9E7B3" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </motion.div>
+
+              <div 
+                className="font-heading text-2xl md:text-3xl font-black mb-6 tracking-tight uppercase" 
+                style={{ 
+                  background: 'linear-gradient(to bottom, #F5E6C4 0%, #D4AF37 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent'
+                }}
+              >
+                {edition.label}
+              </div>
+              
+              <motion.a
+                href={edition.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(212, 175, 55, 0.4)' }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-3.5 text-sm md:text-base font-heading font-bold rounded-2xl transition-all duration-300 w-full relative z-10 overflow-hidden"
+                style={{
+                  background: 'linear-gradient(135deg, #D4AF37 0%, #B8860B 100%)',
+                  color: '#071421',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                }}
+              >
+                CLICK HERE
+              </motion.a>
+
+              {/* Decorative Gold Glow on Hover */}
+              <div
+                className="absolute inset-0 border-2 border-[#D4AF37] rounded-[2rem] opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+                style={{ 
+                  boxShadow: '0 0 30px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.2)',
+                  borderColor: 'rgba(212, 175, 55, 0.6)'
+                }}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+
         {/* Featured Gallery Grid */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}

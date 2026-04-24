@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { submitNomination } from "../services/api";
 import FormInput from "../components/FormInput";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const NominationForm = () => {
   const [formData, setFormData] = useState({
@@ -92,14 +95,20 @@ await submitNomination(data);
 
   // Luxury Gold & Navy Blue Theme Styles
   const styles = {
+    pageWrapper: {
+      background: "linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1230 100%)",
+      minHeight: "100vh",
+      paddingTop: "80px", // to prevent overlap with fixed navbar
+      overflow: "hidden", // to contain the decorative elements
+      position: "relative",
+    },
     container: {
       maxWidth: "1000px",
       margin: "0 auto",
       padding: "40px 20px",
-      background: "linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0d1230 100%)",
-      minHeight: "100vh",
       fontFamily: "'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
       position: "relative",
+      zIndex: 1,
     },
     // Decorative background elements
     bgDecoration1: {
@@ -334,17 +343,37 @@ await submitNomination(data);
   };
 
   return (
-    <div style={styles.container}>
-      {/* Decorative Background Elements */}
-      <div style={styles.bgDecoration1}></div>
-      <div style={styles.bgDecoration2}></div>
-      
-      <div style={styles.header}>
-        <h1 style={styles.title}>
-          BHARAT EDUCATION <span style={styles.goldAccent}>EXCELLENCE AWARDS</span>
-        </h1>
-        <p style={styles.subtitle}>Nomination Form 2026</p>
-      </div>
+    <>
+      <Navbar />
+      <div style={styles.pageWrapper}>
+        {/* Decorative Background Elements */}
+        <div style={styles.bgDecoration1}></div>
+        <div style={styles.bgDecoration2}></div>
+        
+        <div style={styles.container}>
+          <div style={styles.header}>
+            <h1 style={styles.title}>
+              BHARAT EDUCATION <span style={styles.goldAccent}>EXCELLENCE AWARDS</span>
+            </h1>
+            <p style={styles.subtitle}>Nomination Form 2026</p>
+          </div>
+
+          <div style={{ textAlign: "center", marginBottom: "30px", position: "relative", zIndex: 1 }}>
+            <Link to="/" style={{ color: "#D4AF37", textDecoration: "none", fontSize: "15px", fontWeight: "600", display: "inline-flex", alignItems: "center", gap: "6px", border: "1px solid rgba(212, 175, 55, 0.3)", padding: "8px 16px", borderRadius: "20px", background: "rgba(212, 175, 55, 0.05)", transition: "all 0.3s ease" }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = "rgba(212, 175, 55, 0.15)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "rgba(212, 175, 55, 0.05)";
+                    e.currentTarget.style.transform = "translateY(0)";
+                  }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+              </svg>
+              Back to Home
+            </Link>
+          </div>
 
       <div style={styles.formCard}>
         {!submitted && (
@@ -444,7 +473,7 @@ await submitNomination(data);
             <h3 style={styles.sectionTitle}>🏛️ Professional Information</h3>
 
             <FormInput 
-              label="College Name" 
+              label="Institution Name" 
               name="collegeName" 
               required
               value={formData.collegeName}
@@ -527,7 +556,7 @@ await submitNomination(data);
             </div>
 
             <FormInput 
-              label="College Website" 
+              label="Institution Website/Link" 
               name="website" 
               type="url"
               value={formData.website}
@@ -652,7 +681,10 @@ await submitNomination(data);
           }
         `}
       </style>
-    </div>
+        </div>
+      </div>
+      <Footer />
+    </>
   );
 };
 

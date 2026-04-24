@@ -344,6 +344,7 @@ export default function Sponsors() {
 
         {/* Logos Grid - Responsive grid with better mobile spacing */}
         <motion.div 
+          key={activeTab}
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -352,7 +353,7 @@ export default function Sponsors() {
         >
           {filteredPartners.map((item, index) => (
             <motion.div
-              key={index}
+              key={item.name}
               variants={itemVariants}
               whileHover={{ 
                 scale: 1.05,

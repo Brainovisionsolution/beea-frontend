@@ -2,7 +2,19 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 
 export default function AwardCategories() {
-  const [activeTab, setActiveTab] = useState('college');
+  const [activeTab, setActiveTab] = useState('school');
+
+  const schoolAwards = [
+    { title: 'Overall Excellence in School Education', description: 'Recognizing schools with outstanding academic results, extracurriculars, and holistic development.' },
+    { title: 'Excellence in Primary Education', description: 'For strong foundation-building in early education (classes 1–5).' },
+    { title: 'Best Secondary School (Academic Performance)', description: 'Based on board results, student achievements, and teaching quality.' },
+    { title: 'Innovation in School Teaching Methods', description: 'Schools using smart classrooms, digital learning, or creative pedagogy.' },
+    { title: 'Student Development & Extracurricular Excellence', description: 'Focus on sports, arts, leadership programs, and personality development.' },
+    { title: 'Top Intermediate College (Science Stream)', description: 'For excellence in MPC/BiPC results and competitive exam performance.' },
+    { title: 'Top Intermediate College (Commerce & Arts)', description: 'For MEC/CEC/HEC streams with strong academic outcomes.' },
+    { title: 'Best Coaching & Competitive Exam Preparation Institute', description: 'For NEET, JEE, CA Foundation, etc.' },
+    { title: 'Student Success & Placement Excellence (Intermediate)', description: 'Based on student admissions into top universities, ranks, and achievements.' },
+  ];
 
   const collegeAwards = [
     { title: 'Overall Excellence in Education', description: 'Honors colleges demonstrating outstanding performance in academics, research, faculty strength, and student outcomes.' },
@@ -37,7 +49,7 @@ export default function AwardCategories() {
     { title: 'Shiksha Samrat – Emperor of Education Award', description: 'Recognizing individuals with extraordinary impact on education.' },
   ];
 
-  const currentAwards = activeTab === 'college' ? collegeAwards : individualAwards;
+  const currentAwards = activeTab === 'school' ? schoolAwards : activeTab === 'college' ? collegeAwards : individualAwards;
 
   // SVG Icons
   const getIcon = (index, type) => {
@@ -86,7 +98,7 @@ export default function AwardCategories() {
       </svg>,
     ];
 
-    const iconSet = type === 'college' ? collegeIcons : individualIcons;
+    const iconSet = type === 'school' ? collegeIcons : type === 'college' ? collegeIcons : individualIcons;
     return iconSet[index % iconSet.length];
   };
 
@@ -218,10 +230,25 @@ export default function AwardCategories() {
 
         {/* Tab Buttons */}
         <div className="flex justify-center mb-16">
-          <div className="inline-flex p-1 rounded-xl" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)' }}>
+          <div className="inline-flex p-1 rounded-xl flex-wrap justify-center gap-2" style={{ backgroundColor: 'rgba(212, 175, 55, 0.05)' }}>
+            <button 
+              onClick={() => setActiveTab('school')} 
+              className={`px-6 md:px-10 py-3 md:py-4 font-heading text-base md:text-lg font-semibold rounded-lg transition-all duration-500 ${
+                activeTab === 'school' 
+                  ? 'shadow-lg' 
+                  : 'opacity-60 hover:opacity-100'
+              }`}
+              style={{
+                backgroundColor: activeTab === 'school' ? '#D4AF37' : 'transparent',
+                color: activeTab === 'school' ? '#0A1628' : '#D4AF37',
+                fontFamily: 'Playfair Display, serif'
+              }}
+            >
+              School & Intermediate Awards
+            </button>
             <button 
               onClick={() => setActiveTab('college')} 
-              className={`px-10 py-4 font-heading text-lg font-semibold rounded-lg transition-all duration-500 ${
+              className={`px-6 md:px-10 py-3 md:py-4 font-heading text-base md:text-lg font-semibold rounded-lg transition-all duration-500 ${
                 activeTab === 'college' 
                   ? 'shadow-lg' 
                   : 'opacity-60 hover:opacity-100'
@@ -236,7 +263,7 @@ export default function AwardCategories() {
             </button>
             <button 
               onClick={() => setActiveTab('individual')} 
-              className={`px-10 py-4 font-heading text-lg font-semibold rounded-lg transition-all duration-500 ${
+              className={`px-6 md:px-10 py-3 md:py-4 font-heading text-base md:text-lg font-semibold rounded-lg transition-all duration-500 ${
                 activeTab === 'individual' 
                   ? 'shadow-lg' 
                   : 'opacity-60 hover:opacity-100'
@@ -364,7 +391,9 @@ export default function AwardCategories() {
               fontFamily: 'Poppins, sans-serif'
             }}
           >
-            {activeTab === 'college' 
+            {activeTab === 'school' 
+              ? 'School and intermediate awards recognize foundational excellence and comprehensive student development'
+              : activeTab === 'college' 
               ? 'College awards recognize institutional excellence and innovation in education' 
               : 'Individual awards honor exceptional educators and leaders shaping the future of learning'}
           </p>
