@@ -20,6 +20,7 @@ import Dashboard from "./pages/Dashboard";
 // Extra Components (existing)
 import ForgotPassword from "./components/ForgotPassword";
 import ResetPassword from "./components/ResetPassword";
+import AdminLogin from "./components/AdminLogin";
 import AdminDashboard from "./components/AdminDashboard";
 import NominationSuccess from "./components/NominationSuccess";
 
@@ -39,7 +40,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
             <Route path="/about" element={<About />} />
             <Route path="/gallery" element={<Gallery />} />
-
+             <Route path="/admin-login" element={<AdminLogin/>}/>
             {/* Nomination Flow 🔥 */}
             <Route path="/nominate" element={<NominationForm />} />
             <Route path="/verify" element={<VerifyEmail />} />
