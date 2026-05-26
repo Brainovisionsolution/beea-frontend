@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 export default function CTA() {
+  const navigate = useNavigate();
+
+  const handleNominateClick = () => {
+    navigate('/nominate');
+  };
+
   return (
     <section className="relative py-20 overflow-hidden" style={{ backgroundColor: '#0A1628' }}>
       {/* Clean Background - No heavy gradients */}
@@ -178,11 +185,12 @@ export default function CTA() {
             transition={{ duration: 0.5, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-5 justify-center items-center mb-14"
           >
-            {/* Primary Button - Light Gold Gradient */}
+            {/* Primary Button - Links to /nominate */}
             <motion.button 
+              onClick={handleNominateClick}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative px-10 py-4 font-heading text-base font-bold rounded-full overflow-hidden shadow-lg"
+              className="group relative px-10 py-4 font-heading text-base font-bold rounded-full overflow-hidden shadow-lg cursor-pointer"
               style={{ 
                 background: 'linear-gradient(135deg, #D4AF37 0%, #F5E6C4 100%)',
                 color: '#0A1628',
@@ -197,7 +205,25 @@ export default function CTA() {
               ></div>
             </motion.button>
             
-            
+            {/* Secondary Button - Links to /categories */}
+            <motion.a
+              href="/categories"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative px-8 py-4 font-heading text-base font-medium rounded-full overflow-hidden"
+              style={{ 
+                background: 'transparent',
+                color: '#D4AF37',
+                fontFamily: 'Playfair Display, serif',
+                border: '1px solid rgba(212, 175, 55, 0.4)'
+              }}
+            >
+              <span className="relative z-10">View Categories</span>
+              <div 
+                className="absolute inset-0 bg-gradient-to-r from-[#D4AF37] to-[#F5E6C4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                style={{ opacity: 0.1 }}
+              ></div>
+            </motion.a>
           </motion.div>
 
           {/* Trust Indicators - Premium Cards */}
