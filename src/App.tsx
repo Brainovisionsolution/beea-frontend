@@ -9,7 +9,10 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import Gallery from "./pages/Gallery";
-
+import AwardCategoriesPage from "./pages/Categories"
+import JurySection from "./pages/JurySection"
+import Sponsors from "./pages/Sponsors";
+import FAQ from "./pages/FAQ";
 // Nomination Flow Pages
 import NominationForm from "./pages/NominationForm";
 import VerifyEmail from "./pages/VerifyEmail";
@@ -48,7 +51,10 @@ const App = () => {
             <Route path="/otp" element={<OTPVerify />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/nomination-success" element={<NominationSuccess />} />
-
+             <Route path="/categories" element={<AwardCategoriesPage />}/>
+             <Route path="/jury" element={<JurySection/>}/>
+             <Route path="/sponsors" element={<Sponsors/>}/>
+             <Route path="/faq" element={<FAQ/>}/>
             {/* Auth Extras */}
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />

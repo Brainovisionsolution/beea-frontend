@@ -1,15 +1,29 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { getAdminNominations } from "../services/api";
+import * as XLSX from "xlsx";
+import { saveAs } from "file-saver";
 
 interface Nomination {
   id?: string;
+  nomination_id?: string;
   fullName?: string;
   email?: string;
   mobile?: string;
+  age?: number;
+  gender?: string;
+  state?: string;
+  address?: string;
   collegeName?: string;
   designation?: string;
+  department?: string;
+  experience?: number;
+  institutionType?: string;
+  website?: string;
+  linkedin?: string;
+  photo_path?: string;
   status?: "Pending" | "Accepted" | "Rejected" | string;
+  created_at?: string;
 }
 
 export default function AdminDashboard() {
@@ -59,6 +73,20 @@ export default function AdminDashboard() {
       email.includes(search.toLowerCase())
     );
   });
+
+  const downloadExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(filteredData);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Nominations");
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const dataBlob = new Blob([excelBuffer], {
+      type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8",
+    });
+    saveAs(dataBlob, "Nominations.xlsx");
+  };
 
   if (loading) {
     return (
@@ -185,23 +213,40 @@ export default function AdminDashboard() {
               <div className="w-16 h-0.5 mt-2" style={{ background: 'linear-gradient(90deg, #D4AF37, transparent)' }} />
             </div>
 
-            <button
-              onClick={() => {
-                localStorage.removeItem("adminToken");
-                window.location.href = "/admin-login";
-              }}
-              className="px-6 py-2.5 font-heading font-semibold text-sm rounded-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
-              style={{
-                background: 'rgba(220, 53, 69, 0.15)',
-                color: '#dc3545',
-                border: '1px solid rgba(220, 53, 69, 0.3)',
-              }}
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-              </svg>
-              Logout
-            </button>
+            <div className="flex gap-3">
+              <button
+                onClick={downloadExcel}
+                className="px-6 py-2.5 font-heading font-semibold text-sm rounded-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                style={{
+                  background: 'rgba(40, 167, 69, 0.15)',
+                  color: '#28a745',
+                  border: '1px solid rgba(40, 167, 69, 0.3)',
+                }}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download Excel
+              </button>
+              
+              <button
+                onClick={() => {
+                  localStorage.removeItem("adminToken");
+                  window.location.href = "/admin-login";
+                }}
+                className="px-6 py-2.5 font-heading font-semibold text-sm rounded-xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                style={{
+                  background: 'rgba(220, 53, 69, 0.15)',
+                  color: '#dc3545',
+                  border: '1px solid rgba(220, 53, 69, 0.3)',
+                }}
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                Logout
+              </button>
+            </div>
           </motion.div>
 
           {/* Stats Cards */}
@@ -263,7 +308,6 @@ export default function AdminDashboard() {
                   background: 'rgba(255, 255, 255, 0.05)',
                   color: '#F5E6C4',
                   border: '1px solid rgba(212, 175, 55, 0.25)',
-                  focusRingColor: '#D4AF37',
                 }}
               />
             </div>
@@ -281,15 +325,26 @@ export default function AdminDashboard() {
             }}
           >
             <div className="overflow-x-auto">
-              <table className="w-full">
+              <table className="w-full min-w-[1600px]">
                 <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(212, 175, 55, 0.2)' }}>
-                    <th className="px-4 py-4 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Name</th>
-                    <th className="px-4 py-4 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Email</th>
-                    <th className="px-4 py-4 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Mobile</th>
-                    <th className="px-4 py-4 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>College</th>
-                    <th className="px-4 py-4 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Designation</th>
-                    <th className="px-4 py-4 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Status</th>
+                  <tr style={{ borderBottom: '1px solid rgba(212, 175, 55, 0.15)' }}>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>ID</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Nomination ID</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Name</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Email</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Mobile</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Age</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Gender</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>State</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>College</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Designation</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Department</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Experience</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Institution</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Website</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>LinkedIn</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Status</th>
+                    <th className="px-4 py-3 text-left font-heading text-xs font-semibold uppercase tracking-wider" style={{ color: '#D4AF37' }}>Created</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -303,11 +358,33 @@ export default function AdminDashboard() {
                         style={{ borderBottom: '1px solid rgba(212, 175, 55, 0.08)' }}
                         className="hover:bg-white/5 transition-colors duration-200"
                       >
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#F5E6C4' }}>{item.id || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#F5E6C4' }}>{item.nomination_id || "-"}</td>
                         <td className="px-4 py-3 font-body text-sm" style={{ color: '#F5E6C4' }}>{item.fullName || "-"}</td>
                         <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.email || "-"}</td>
                         <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.mobile || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.age || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.gender || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.state || "-"}</td>
                         <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.collegeName || "-"}</td>
                         <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.designation || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.department || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.experience || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>{item.institutionType || "-"}</td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>
+                          {item.website ? (
+                            <a href={item.website} target="_blank" rel="noopener noreferrer" style={{ color: '#D4AF37' }} className="hover:underline">
+                              Link
+                            </a>
+                          ) : "-"}
+                        </td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>
+                          {item.linkedin ? (
+                            <a href={item.linkedin} target="_blank" rel="noopener noreferrer" style={{ color: '#D4AF37' }} className="hover:underline">
+                              Profile
+                            </a>
+                          ) : "-"}
+                        </td>
                         <td className="px-4 py-3">
                           <span
                             className="inline-flex px-2 py-1 rounded-full text-xs font-semibold"
@@ -336,11 +413,16 @@ export default function AdminDashboard() {
                             {item.status || "Unknown"}
                           </span>
                         </td>
+                        <td className="px-4 py-3 font-body text-sm" style={{ color: '#A0AEC0' }}>
+                          {item.created_at
+                            ? new Date(item.created_at).toLocaleDateString()
+                            : "-"}
+                        </td>
                       </motion.tr>
                     ))
                   ) : (
                     <tr>
-                      <td colSpan={6} className="px-4 py-12 text-center">
+                      <td colSpan={17} className="px-4 py-12 text-center">
                         <div className="flex flex-col items-center gap-2">
                           <svg className="w-12 h-12 opacity-30" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: '#D4AF37' }}>
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />

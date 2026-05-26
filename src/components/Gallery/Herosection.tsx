@@ -1,62 +1,8 @@
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { useState, useRef } from 'react';
-
-interface GalleryImage {
-  id: number;
-  src: string;
-  title: string;
-  year: string;
-  category: string;
-}
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Herosection(): JSX.Element {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-
-  const featuredImages: GalleryImage[] = [
-    {
-      id: 1,
-      src: 'https://placehold.co/800x1000/0E2A47/D4AF37?text=Awards+Ceremony+2025',
-      title: 'Grand Awards Ceremony',
-      year: '2025',
-      category: 'Events',
-    },
-    {
-      id: 2,
-      src: 'https://placehold.co/800x1000/0E2A47/D4AF37?text=Jury+Panel',
-      title: 'Jury Panel Discussion',
-      year: '2025',
-      category: 'Judging',
-    },
-    {
-      id: 3,
-      src: 'https://placehold.co/800x1000/0E2A47/D4AF37?text=Winner+Celebration',
-      title: 'Winner Celebrations',
-      year: '2025',
-      category: 'Moments',
-    },
-    {
-      id: 4,
-      src: 'https://placehold.co/800x1000/0E2A47/D4AF37?text=Red+Carpet',
-      title: 'Red Carpet Arrivals',
-      year: '2025',
-      category: 'Events',
-    },
-    {
-      id: 5,
-      src: 'https://placehold.co/800x1000/0E2A47/D4AF37?text=Keynote+Speech',
-      title: 'Keynote Address',
-      year: '2024',
-      category: 'Speeches',
-    },
-    {
-      id: 6,
-      src: 'https://placehold.co/800x1000/0E2A47/D4AF37?text=Group+Photo',
-      title: 'Group Photo with Awardees',
-      year: '2024',
-      category: 'Moments',
-    },
-  ];
 
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -73,6 +19,14 @@ export default function Herosection(): JSX.Element {
       mouseY.set(y);
     }
   };
+
+  const editions = [
+    { label: 'Edition 1 Gallery', url: 'https://drive.google.com/drive/folders/1yumGTFkNNTFmfQjxbJ2nKqRlR8WWGaiC?usp=sharing' },
+    { label: 'Edition 2 Gallery', url: 'https://drive.google.com/drive/folders/1Fj3XTPPbgilDEgRQMBN9xgGaPP8PfV1N?usp=sharing' },
+    { label: 'Edition 3 Gallery', url: 'https://drive.google.com/drive/folders/1AeUhZBq8FGwO1DPgL845jVl_iHVZ-UHZ?usp=sharing' },
+    { label: 'Edition 4 Gallery', url: 'https://drive.google.com/drive/folders/1a9wGj3YewE_7Jv46pkKo7zq5pGM71nyW?usp=sharing' },
+    { label: 'Edition 5 Gallery', url: 'https://drive.google.com/drive/folders/15nusWb6lihw_h5JUYsJ2zqQcZ-psTTTo?usp=sharing' }
+  ];
 
   return (
     <section
@@ -212,29 +166,21 @@ export default function Herosection(): JSX.Element {
           </div>
         </motion.div>
 
-        {/* Years Grid - Enhanced Premium Design */}
+        {/* 5 Editions Grid - Centered Premium Design */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6 md:gap-10 mb-16 md:mb-24 max-w-6xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 mb-16 md:mb-24 max-w-5xl mx-auto"
         >
-          {[
-            { label: 'Edition 1 Gallery', url: 'https://drive.google.com/drive/folders/1yumGTFkNNTFmfQjxbJ2nKqRlR8WWGaiC?usp=sharing' },
-            { label: 'Edition 2 Gallery', url: 'https://drive.google.com/drive/folders/1Fj3XTPPbgilDEgRQMBN9xgGaPP8PfV1N?usp=sharing' },
-            { label: 'Edition 3 Gallery', url: 'https://drive.google.com/drive/folders/1AeUhZBq8FGwO1DPgL845jVl_iHVZ-UHZ?usp=sharing' },
-            { label: 'Edition 4 Gallery', url: 'https://drive.google.com/drive/folders/1a9wGj3YewE_7Jv46pkKo7zq5pGM71nyW?usp=sharing' },
-            { label: 'Edition 5 Gallery', url: 'https://drive.google.com/drive/folders/15nusWb6lihw_h5JUYsJ2zqQcZ-psTTTo?usp=sharing' }
-          ].map((edition, index) => (
+          {editions.map((edition, index) => (
             <motion.div
               key={edition.label}
               whileHover={{ 
                 y: -10,
                 transition: { duration: 0.3 }
               }}
-              className={`relative p-10 md:p-12 rounded-[2rem] flex flex-col items-center justify-center text-center group cursor-pointer overflow-hidden ${
-                index < 3 ? 'md:col-span-2' : index === 3 ? 'md:col-span-2 md:col-start-2' : 'md:col-span-2'
-              }`}
+              className="relative p-10 md:p-12 rounded-[2rem] flex flex-col items-center justify-center text-center group cursor-pointer overflow-hidden"
               style={{
                 background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(11, 28, 45, 0.4))',
                 border: '1px solid rgba(212, 175, 55, 0.3)',
@@ -302,138 +248,6 @@ export default function Herosection(): JSX.Element {
                 }}
               />
             </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Featured Gallery Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mb-12 md:mb-16"
-        >
-          {featuredImages.map((image, index) => (
-            <motion.div
-              key={image.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-              onMouseEnter={() => setHoveredIndex(image.id)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative rounded-2xl overflow-hidden cursor-pointer"
-              style={{
-                boxShadow: '0 20px 35px -15px rgba(0, 0, 0, 0.4)',
-              }}
-            >
-              {/* Image Container */}
-              <div className="relative h-72 md:h-80 lg:h-96 overflow-hidden">
-                <img
-                  src={image.src}
-                  alt={image.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Gradient Overlay */}
-                <div
-                  className="absolute inset-0 transition-opacity duration-500"
-                  style={{
-                    background: 'linear-gradient(to top, rgba(11, 28, 45, 0.9) 0%, rgba(11, 28, 45, 0.3) 50%, transparent 100%)',
-                    opacity: hoveredIndex === image.id ? 0.7 : 0.9,
-                  }}
-                />
-                
-                {/* Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-5 transform translate-y-0 transition-transform duration-500 group-hover:translate-y-[-8px]">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span
-                      className="text-xs font-body px-2 py-0.5 rounded-full"
-                      style={{
-                        background: 'rgba(212, 175, 55, 0.2)',
-                        color: '#D4AF37',
-                        border: '1px solid rgba(212, 175, 55, 0.3)',
-                      }}
-                    >
-                      {image.category}
-                    </span>
-                    <span
-                      className="text-xs font-body"
-                      style={{ color: '#F5E6C4', opacity: 0.6 }}
-                    >
-                      {image.year}
-                    </span>
-                  </div>
-                  <h3
-                    className="font-heading text-lg md:text-xl font-bold"
-                    style={{ color: '#F5E6C4' }}
-                  >
-                    {image.title}
-                  </h3>
-                </div>
-
-                {/* Gold Border on Hover */}
-                <div
-                  className="absolute inset-0 border-2 border-[#D4AF37] rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{ boxShadow: '0 0 30px rgba(212, 175, 55, 0.3)' }}
-                />
-              </div>
-
-              {/* Number Indicator */}
-              <div
-                className="absolute top-3 left-3 text-2xl md:text-3xl font-heading font-black opacity-20 group-hover:opacity-30 transition-opacity duration-300"
-                style={{ color: '#D4AF37' }}
-              >
-                {String(image.id).padStart(2, '0')}
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* View Gallery Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-center"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="px-8 md:px-10 py-3.5 md:py-4 font-heading font-semibold text-sm md:text-base rounded-xl transition-all duration-300 group relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05))',
-              color: '#D4AF37',
-              border: '1px solid rgba(212, 175, 55, 0.5)',
-              backdropFilter: 'blur(8px)',
-            }}
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Explore Full Gallery
-              <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </span>
-          </motion.button>
-        </motion.div>
-
-        {/* Category Quick Filters */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="flex flex-wrap justify-center gap-3 mt-12 pt-4"
-        >
-          {['All Moments', 'Events', 'Judging', 'Speeches', 'Celebrations'].map((category, index) => (
-            <button
-              key={category}
-              className="px-4 md:px-5 py-1.5 md:py-2 font-body text-xs md:text-sm rounded-full transition-all duration-300 hover:scale-105"
-              style={{
-                background: index === 0 ? 'rgba(212, 175, 55, 0.15)' : 'rgba(255, 255, 255, 0.03)',
-                color: index === 0 ? '#D4AF37' : '#F5E6C4',
-                border: `1px solid ${index === 0 ? 'rgba(212, 175, 55, 0.5)' : 'rgba(212, 175, 55, 0.2)'}`,
-              }}
-            >
-              {category}
-            </button>
           ))}
         </motion.div>
 

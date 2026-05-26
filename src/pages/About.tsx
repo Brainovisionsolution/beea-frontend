@@ -11,7 +11,6 @@ const About = () => {
      <Herosection/>
      <History/>
      <Team/>
-     <TestimonialsCTA/>
       <Footer/>
 
     </main>

@@ -9,7 +9,6 @@ const Gallery = () => {
     <main className="bg-background">
       <Navbar/>
   <Herosection/>
-    <MasonryGallery/>
       <Footer/>
 
     </main>

@@ -23,11 +23,11 @@ export default function Navbar() {
     
     },
     {name : "Gallery",href: "/gallery"},
-    { name: "Categories", href: "#categories" },
-    { name: "Jury", href: "#jury" },
-    { name: "Sponsors", href: "#sponsors" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#contact" },
+    { name: "Categories", href: "/categories" },
+    { name: "Jury", href: "/jury" },
+    { name: "Sponsors", href: "/sponsors" },
+    { name: "FAQ", href: "/faq" },
+    
   ];
 
   const toggleDropdown = (index) => {
