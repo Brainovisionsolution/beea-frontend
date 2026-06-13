@@ -65,7 +65,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           
-          {/* About Column - Luxury Neumorphic Card */}
+          {/* About Column - With Partnership Logos */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -79,9 +79,37 @@ export default function Footer() {
             }}
           >
             <h3 className="font-heading text-lg font-bold mb-4" style={{ color: '#F5E6C4', fontFamily: 'Playfair Display, serif' }}>About BEEA</h3>
-            <p className="font-body text-sm leading-relaxed mb-6" style={{ color: '#F5E6C4', opacity: 0.8, fontFamily: 'Poppins, sans-serif' }}>
+            <p className="font-body text-sm leading-relaxed mb-4" style={{ color: '#F5E6C4', opacity: 0.8, fontFamily: 'Poppins, sans-serif' }}>
               Bharat Education Excellence Awards recognizes and celebrates outstanding contributions in the Indian education sector since 2018.
             </p>
+            
+            {/* Partnership Block with Logos */}
+            <div className="mb-4 p-3 rounded-lg" style={{ 
+              background: 'rgba(212, 175, 55, 0.05)',
+              border: '1px solid rgba(212, 175, 55, 0.15)'
+            }}>
+              <p className="font-body text-[10px] uppercase tracking-wider text-center mb-3" style={{ 
+                color: '#D4AF37', 
+                opacity: 0.7,
+                fontFamily: 'Poppins, sans-serif'
+              }}>
+                Organized By
+              </p>
+              <div className="flex items-center justify-center gap-3">
+                <img 
+                  src="/logos/bov.png" 
+                  alt="Brain O Vision" 
+                  className="h-8 w-auto object-contain"
+                />
+                <span className="text-[#D4AF37] text-xs font-heading">✕</span>
+                <img 
+                  src="/logos/8.png" 
+                  alt="JCI Hyderabad" 
+                  className="h-8 w-auto object-contain"
+                />
+              </div>
+            </div>
+            
             <div className="flex gap-3">
               {/* Social Links - Luxury Neumorphic */}
               {[
@@ -268,7 +296,7 @@ export default function Footer() {
           </motion.div>
         </div>
 
-        {/* Bottom Bar - Luxury Neumorphic */}
+        {/* Bottom Bar - With Partnership Logos */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -280,6 +308,25 @@ export default function Footer() {
             <p className="font-body text-xs" style={{ color: '#F5E6C4', opacity: 0.7, fontFamily: 'Poppins, sans-serif' }}>
               © 2024 Bharat Education Excellence Awards. All rights reserved.
             </p>
+            
+            {/* Partnership Credit with Logos in Footer */}
+            <div className="flex items-center gap-3">
+              <span className="font-body text-[10px]" style={{ color: '#F5E6C4', opacity: 0.5, fontFamily: 'Poppins, sans-serif' }}>
+                Organized by
+              </span>
+              <img 
+                src="/logos/bov.png" 
+                alt="Brain O Vision" 
+                className="h-5 w-auto object-contain"
+              />
+              <span className="text-[#D4AF37] text-[8px]">✕</span>
+              <img 
+                src="/logos/8.png" 
+                alt="JCI Hyderabad" 
+                className="h-5 w-auto object-contain"
+              />
+            </div>
+            
             <div className="flex gap-4">
               {['Privacy Policy', 'Terms of Use', 'Cookie Policy', 'Sitemap'].map((item, index) => (
                 <div key={index} className="flex items-center">

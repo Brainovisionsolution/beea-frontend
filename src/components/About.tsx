@@ -1,23 +1,4 @@
 export default function About() {
-  const infoPoints = [
-    {
-      title: "Our Mission",
-      description: "To identify and celebrate institutions and individuals who have made significant contributions to the field of education in India.",
-    },
-    {
-      title: "Our Vision",
-      description: "Creating a platform that acknowledges excellence and inspires educational institutions to reach new heights of achievement.",
-    },
-    {
-      title: "Recognition",
-      description: "Honoring outstanding educators, colleges, and initiatives that have transformed the educational landscape of our nation.",
-    },
-    {
-      title: "Community",
-      description: "Building a network of excellence that fosters collaboration and knowledge sharing among educational leaders.",
-    },
-  ];
-
   const handleNominateClick = () => {
     window.location.href = '/nominate';
   };
@@ -56,7 +37,7 @@ export default function About() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-          {/* Left side - Larger Image - Reordered for mobile */}
+          {/* Left side - Image */}
           <div className="relative order-1 md:order-none w-full">
             <div className="relative">
               <img 
@@ -88,7 +69,7 @@ export default function About() {
               </span>
             </div>
 
-            {/* Main Heading - Midnight Blue (#0B1C2D) */}
+            {/* Main Heading */}
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-2 leading-tight" style={{ 
               color: '#0B1C2D',
               fontFamily: 'Playfair Display, serif'
@@ -96,88 +77,126 @@ export default function About() {
               About
             </h2>
             
-            {/* Excellence in education across India with colored words */}
             <h3 className="font-heading text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 md:mb-8 leading-tight" style={{ fontFamily: 'Playfair Display, serif' }}>
               <span style={{ color: '#0B1C2D' }}>Bharat Education Excellence</span>
               <span style={{ color: '#D4AF37' }}> Awards</span>
             </h3>
 
-            {/* Description - Soft Champagne text on white background */}
-            <p className="font-body text-base md:text-lg leading-relaxed mb-8 md:mb-10" style={{ 
-              color: '#0B1C2D',
-              opacity: 0.8,
-              fontFamily: 'Poppins, sans-serif'
-            }}>
-              The Bharat Education Excellence Awards is a prestigious initiative dedicated to recognizing outstanding achievements in the Indian education sector. We honor educators, colleges, universities and individuals who demonstrate exceptional commitment to{' '}
-              <span className="font-semibold" style={{ color: '#D4AF37' }}>excellence</span> and innovation.
-            </p>
-
-            {/* Info Points Grid - Visible on mobile, hidden on desktop? 
-                Currently hidden but you can make it visible by removing 'hidden' class */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-10">
-              {infoPoints.map((point, index) => (
-                <div key={index} className="p-4 md:p-6 rounded-lg" style={{ 
-                  backgroundColor: 'rgba(212, 175, 55, 0.03)',
-                  border: '1px solid rgba(212, 175, 55, 0.1)'
-                }}>
-                  <h4 className="font-heading text-lg md:text-xl font-bold mb-2" style={{ 
-                    color: '#0B1C2D',
-                    fontFamily: 'Playfair Display, serif'
-                  }}>
-                    {point.title}
-                  </h4>
-                  <p className="font-body text-xs md:text-sm" style={{ 
+            {/* Description - More info about BEEA */}
+            <div className="space-y-4 mb-8 md:mb-10">
+              <p className="font-body text-base md:text-lg leading-relaxed" style={{ 
+                color: '#0B1C2D',
+                opacity: 0.8,
+                fontFamily: 'Poppins, sans-serif'
+              }}>
+                The Bharat Education Excellence Awards is a prestigious initiative dedicated to recognizing outstanding achievements in the Indian education sector.
+              </p>
+              
+              {/* Additional Info Points */}
+              <div className="grid grid-cols-1 gap-3 pt-2">
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: '#D4AF37' }}></div>
+                  <p className="font-body text-sm md:text-base" style={{ 
                     color: '#0B1C2D',
                     opacity: 0.7,
                     fontFamily: 'Poppins, sans-serif'
                   }}>
-                    {point.description}
+                    <span className="font-semibold" style={{ color: '#D4AF37' }}>500+</span> Educational institutions recognized annually
                   </p>
                 </div>
-              ))}
-            </div>
-
-            {/* Award Icon Section with Nominate Button */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8">
-              {/* Award Icon - Metallic Gold */}
-              <div className="flex items-center gap-3">
-                <div className="relative">
-                  <svg 
-                    className="w-10 md:w-12 h-10 md:h-12" 
-                    style={{ color: '#D4AF37' }}
-                    fill="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2z"/>
-                  </svg>
-                  <div className="absolute -top-1 -right-1 w-3 md:w-4 h-3 md:h-4 rounded-full animate-pulse" style={{ backgroundColor: '#D4AF37' }}></div>
-                </div>
-                <div>
-                  <div className="font-heading text-xl md:text-2xl font-bold" style={{ 
-                    color: '#0B1C2D',
-                    fontFamily: 'Playfair Display, serif'
-                  }}>2500+</div>
-                  <div className="font-body text-xs md:text-sm" style={{ 
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: '#D4AF37' }}></div>
+                  <p className="font-body text-sm md:text-base" style={{ 
                     color: '#0B1C2D',
                     opacity: 0.7,
                     fontFamily: 'Poppins, sans-serif'
-                  }}>Awards Given</div>
+                  }}>
+                    <span className="font-semibold" style={{ color: '#D4AF37' }}>20+</span> States participating across India
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full mt-2" style={{ backgroundColor: '#D4AF37' }}></div>
+                  <p className="font-body text-sm md:text-base" style={{ 
+                    color: '#0B1C2D',
+                    opacity: 0.7,
+                    fontFamily: 'Poppins, sans-serif'
+                  }}>
+                    <span className="font-semibold" style={{ color: '#D4AF37' }}>50+</span> Expert jury members from education industry
+                  </p>
                 </div>
               </div>
-
-              {/* Nominate Now Button - Deep Navy Gradient */}
-              <button 
-                onClick={handleNominateClick}
-                className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 font-heading font-semibold text-base md:text-lg rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-                style={{ 
-                  background: 'linear-gradient(135deg, #0E2A47 0%, #071421 100%)',
-                  color: '#F5E6C4',
-                  fontFamily: 'Playfair Display, serif'
-                }}
-              >
-                Nominate Now
-              </button>
             </div>
+
+            {/* Partnership Block - With Logos instead of names */}
+            <div className="mb-8 md:mb-10 p-5 md:p-6 rounded-xl" style={{ 
+              background: 'linear-gradient(135deg, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0.02) 100%)',
+              border: '1px solid rgba(212, 175, 55, 0.2)'
+            }}>
+              <div className="flex items-center justify-between mb-6">
+                <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#D4AF37]" />
+                <span className="font-heading text-[10px] md:text-xs font-semibold tracking-[0.2em] uppercase" style={{ 
+                  color: '#D4AF37',
+                  fontFamily: 'Playfair Display, serif'
+                }}>
+                  Organized By
+                </span>
+                <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6">
+                {/* Brain O Vision Logo */}
+                <div className="text-center">
+                  <img 
+                    src="/logos/bov.png" 
+                    alt="Brain O Vision" 
+                    className="h-12 md:h-16 w-auto object-contain mx-auto mb-2"
+                  />
+                  <p className="font-body text-xs" style={{ 
+                    color: '#0B1C2D',
+                    opacity: 0.6,
+                    fontFamily: 'Poppins, sans-serif'
+                  }}>
+                    Brain O Vision
+                  </p>
+                </div>
+                
+                {/* Connector */}
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-px bg-gradient-to-r from-transparent to-[rgba(212,175,55,0.5)]" />
+                  <span className="text-[#D4AF37] text-lg font-heading">✕</span>
+                  <div className="w-8 h-px bg-gradient-to-l from-transparent to-[rgba(212,175,55,0.5)]" />
+                </div>
+                
+                {/* JCI Hyderabad Logo */}
+                <div className="text-center">
+                  <img 
+                    src="/logos/8.png" 
+                    alt="JCI Hyderabad" 
+                    className="h-12 md:h-16 w-auto object-contain mx-auto mb-2"
+                  />
+                  <p className="font-body text-xs" style={{ 
+                    color: '#0B1C2D',
+                    opacity: 0.6,
+                    fontFamily: 'Poppins, sans-serif'
+                  }}>
+                    JCI Hyderabad
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Nominate Button */}
+            <button 
+              onClick={handleNominateClick}
+              className="w-full sm:w-auto px-6 md:px-8 py-3 md:py-4 font-heading font-semibold text-base md:text-lg rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              style={{ 
+                background: 'linear-gradient(135deg, #0E2A47 0%, #071421 100%)',
+                color: '#F5E6C4',
+                fontFamily: 'Playfair Display, serif'
+              }}
+            >
+              Nominate Now
+            </button>
           </div>
         </div>
       </div>

@@ -133,22 +133,34 @@ export default function Hero() {
               </span>
             </motion.h1>
 
-            {/* Description */}
-            <motion.p
+            {/* Partnership Text - Added below heading (just text, no logos) */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.7 }}
-              className="text-base lg:text-lg leading-relaxed"
-              style={{ color: '#B8C5D6', fontFamily: 'Poppins, sans-serif' }}
+              transition={{ delay: 0.45, duration: 0.5 }}
+              className="pt-2"
             >
-              Honoring outstanding institutions and educators who shape the future of our nation through the Bharath Education Excellence Awards.
-            </motion.p>
+              <div className="flex items-center gap-2">
+                <div className="h-px w-6 bg-gradient-to-r from-transparent to-[#D4AF37]" />
+                <span className="text-[10px] md:text-xs font-heading tracking-[0.2em] uppercase text-[#D4AF37]/60">
+                  A Joint Initiative
+                </span>
+                <div className="h-px w-6 bg-gradient-to-l from-transparent to-[#D4AF37]" />
+              </div>
+              <p className="font-heading text-sm md:text-base font-medium text-white/80 mt-2">
+                Presented by <span className="text-[#D4AF37] font-semibold">Brain O Vision</span>
+              </p>
+              <p className="font-heading text-sm md:text-base font-medium text-white/80">
+                In Association with <span className="text-[#D4AF37] font-semibold">JCI Hyderabad</span>
+              </p>
+            </motion.div>
+
 
             {/* CTA Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
+              transition={{ delay: 0.8, duration: 0.7 }}
               className="flex flex-wrap items-center gap-4 pt-2"
             >
               <motion.a
@@ -192,7 +204,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ===== RIGHT SIDE - Circular Image Composition (UNCHANGED) ===== */}
+          {/* ===== RIGHT SIDE - Circular Image Composition ===== */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}

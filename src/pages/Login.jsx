@@ -81,14 +81,14 @@ const Login = () => {
       boxShadow: "0 25px 50px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(212, 175, 55, 0.1)",
       overflow: "hidden",
       width: "100%",
-      maxWidth: "480px",
+      maxWidth: "500px",
       animation: "slideIn 0.5s ease-out",
       position: "relative",
       zIndex: 1,
     },
     header: {
       background: "linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%)",
-      padding: "45px 30px",
+      padding: "35px 30px 25px",
       textAlign: "center",
       borderBottom: "2px solid",
       borderImage: "linear-gradient(90deg, #D4AF37, #FFD700, #D4AF37) 1",
@@ -97,7 +97,7 @@ const Login = () => {
     title: {
       color: "#D4AF37",
       margin: 0,
-      fontSize: "28px",
+      fontSize: "26px",
       fontWeight: "700",
       letterSpacing: "2px",
       textShadow: "0 2px 4px rgba(0,0,0,0.3)",
@@ -111,8 +111,39 @@ const Login = () => {
       fontWeight: "600",
       letterSpacing: "1px",
     },
+    // Partnership Logos Section - BIGGER
+    partnershipRow: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: "16px",
+      marginTop: "20px",
+      paddingTop: "18px",
+      borderTop: "1px solid rgba(212, 175, 55, 0.25)",
+    },
+    partnerLogo: {
+      height: "48px",
+      width: "auto",
+      objectFit: "contain",
+      opacity: 0.9,
+      transition: "all 0.3s ease",
+    },
+    partnerDivider: {
+      color: "#D4AF37",
+      fontSize: "16px",
+      fontWeight: "500",
+      opacity: 0.7,
+    },
+    organizedByText: {
+      fontSize: "10px",
+      color: "#8888aa",
+      textTransform: "uppercase",
+      letterSpacing: "2px",
+      marginBottom: "8px",
+      fontWeight: "500",
+    },
     content: {
-      padding: "40px 35px",
+      padding: "35px 35px",
     },
     iconContainer: {
       textAlign: "center",
@@ -130,9 +161,9 @@ const Login = () => {
       background: "linear-gradient(135deg, #D4AF37 0%, #FFD700 100%)",
       WebkitBackgroundClip: "text",
       WebkitTextFillColor: "transparent",
-      fontSize: "24px",
+      fontSize: "26px",
       fontWeight: "700",
-      marginBottom: "8px",
+      marginBottom: "10px",
     },
     welcomeSubtitle: {
       color: "#a0a0c0",
@@ -212,10 +243,6 @@ const Login = () => {
       fontWeight: "600",
       transition: "color 0.3s ease",
     },
-    goldText: {
-      color: "#D4AF37",
-    },
-    // Footer decoration
     footerDecoration: {
       height: "3px",
       background: "linear-gradient(90deg, transparent, #D4AF37, #FFD700, #D4AF37, transparent)",
@@ -233,6 +260,42 @@ const Login = () => {
         <div style={styles.header}>
           <h1 style={styles.title}>BHARAT EDUCATION</h1>
           <p style={styles.subtitle}>EXCELLENCE AWARDS</p>
+          
+          {/* Partnership Logos Section - BIGGER LOGOS */}
+          <div style={styles.partnershipRow}>
+            <div>
+              <div style={styles.organizedByText}>ORGANIZED BY</div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "12px" }}>
+                <img 
+                  src="/logos/bov.png" 
+                  alt="Brain O Vision" 
+                  style={styles.partnerLogo}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = "0.9";
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                />
+                <span style={styles.partnerDivider}>✕</span>
+                <img 
+                  src="/logos/8.png" 
+                  alt="JCI Hyderabad" 
+                  style={styles.partnerLogo}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = "1";
+                    e.currentTarget.style.transform = "scale(1.05)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = "0.9";
+                    e.currentTarget.style.transform = "scale(1)";
+                  }}
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div style={styles.content}>
@@ -299,15 +362,15 @@ const Login = () => {
           </button>
 
           <div style={styles.infoText}>
-            <p> OTP will be sent to your registered email</p>
+            <p>🔐 OTP will be sent to your registered email</p>
             <p style={{ fontSize: "11px", marginTop: "8px" }}>
-               OTP valid for 10 minutes
+              ⏱️ OTP valid for 10 minutes
             </p>
           </div>
 
           <div style={styles.contactInfo}>
             <p>
-              Need assistance? Contact us at{" "}
+              📧 Need assistance? Contact us at{" "}
               <a 
                 href="mailto:beea@brainovision.in" 
                 style={styles.contactLink}

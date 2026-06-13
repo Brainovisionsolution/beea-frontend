@@ -6,7 +6,7 @@ import WhyNominate from "@/components/WhyNominate";
 import EventHighlights from "@/components/EventHighlights";
 import JurySection from "@/components/JurySection";
 import Sponsors from "@/components/Sponsors";
-
+import StrategicPartners from "@/components/StrategicPartners";
 import NominationProcess from "@/components/NominationProcess";
 import FAQ from "@/components/FAQ";
 import CTA from "@/components/CTA";
@@ -19,6 +19,7 @@ const Index = () => {
       <Navbar/>
       <Hero />
       <About/>
+      <StrategicPartners/>
       <Stats/>
       <VideoSection/>
       <AwardCategories/>
