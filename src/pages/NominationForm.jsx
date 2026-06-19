@@ -594,12 +594,7 @@ const NominationForm = () => {
                   beea@brainovision.in
                 </a>
               </p>
-              <p style={{ marginTop: "5px" }}>
-                📞{" "}
-                <a href="tel:+917207775039" style={styles.contactLink}>
-                  +91 7207775039
-                </a>
-              </p>
+              
             </div>
           </div>
         </div>

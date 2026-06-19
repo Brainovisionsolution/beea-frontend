@@ -380,17 +380,7 @@ const Login = () => {
                 beea@brainovision.in
               </a>
             </p>
-            <p style={{ marginTop: "5px" }}>
-              📞{" "}
-              <a 
-                href="tel:+917207775039" 
-                style={styles.contactLink}
-                onMouseEnter={(e) => e.target.style.color = "#FFD700"}
-                onMouseLeave={(e) => e.target.style.color = "#D4AF37"}
-              >
-                +91 7207775039
-              </a>
-            </p>
+           
           </div>
         </div>
         
